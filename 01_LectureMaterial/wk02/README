@@ -1,0 +1,27 @@
+(setq week 2)
+(load-file "../aux.el")
+
+(setq topics '(
+"Classes and Objects"
+
+"Some slides"
+("s2.pdf" "some slides")
+("s2-print.pdf" "slides - 8 slides on a page")
+
+"Lecture capture"
+("lectureCapture02.ogv" "lecture capture")
+
+
+("Date.java"     "Calendar date as a first example")
+("DateTest.java" "Tests for Calendar date")
+
+("BankAccount.java"     "A very rudimentary BankAccount example")
+("BankAccountTest.java" "Tests for the BankAccount example")
+
+("JUnitExample.java"    "JUnit test examples")
+))
+
+
+
+(write-web-page "README")
+;(cp topics)

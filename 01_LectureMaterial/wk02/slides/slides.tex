@@ -1,0 +1,213 @@
+\documentclass{beamer}
+\def\mytoday{5 October 2016}
+\newcommand{\q}{\mbox{"}}
+\renewcommand{\b}{\mbox{$\tt\backslash$}}
+\def\textttb#1{\mcolor{blue}{\texttt{#1}}}
+
+\def\todo#1{\mcolor{red}{\textbf{#1}}}
+\usepackage{pgfpages}\def\mpause{\pause}
+%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=1mm, landscape]\def\mpause{}
+
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{color}
+%\usepackage{bm}
+\usepackage{beamerthemesplit}
+\defbeamertemplate*{footline}{infolines theme}{
+\hspace*{2ex}    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+%   \insertpagenumber{} / \insertpresentationendpage \hspace*{2ex}
+  \vskip1ex}
+
+\def\mcolor#1#2{\rule{0ex}{0ex}\color{#1}#2\color{black}{}}
+\usetheme{Copenhagen}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+\makeatletter % code block to allow custom labels to be cross-ref'ed; see comp.text.tex "customized display labels cross-ref'd"
+\begin{document}
+
+\title{MSc/ICY Software Workshop\\
+Classes and Objects, JUnit Tests}
+
+\author[Manfred~Kerber]{\begin{tabular}{ll}
+\mcolor{blue}{Manfred Kerber} &   {\tt www.cs.bham.ac.uk/\~{}mmk}\\
+\end{tabular}}
+
+\date{\mytoday}
+
+\begin{frame}
+\titlepage
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Classes as Generalized Types}
+\mcolor{red}{Classes} can be considered as generalized types.\bigskip
+
+There are 8 basic \mcolor{blue}{types} in Java (such as
+\mcolor{blue}{\texttt{int}} and \mcolor{blue}{\texttt{double}}).\bigskip
+
+Classes are general and can be user defined. For instance, we can
+define a class \mcolor{blue}{\texttt{Date}}, consisting of an
+\mcolor{blue}{\texttt{int}}, a \mcolor{blue}{\texttt{String}}, and
+another \mcolor{blue}{\texttt{int}}, representing the day of the
+month, the month and the year.
+\end{frame}
+
+\begin{frame}
+\frametitle{Objects as Elements of Classes}
+
+\mcolor{red}{Objects} are elements of \mcolor{blue}{Classes}.\bigskip
+
+E.g., \mcolor{blue}{\mytoday} would be a \mcolor{blue}{Date}.\bigskip
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Formally in Java}
+\verbatiminput{Date.java}
+
+\mcolor{red}{Note: Each class goes in a separate file!}
+\end{frame}
+
+\begin{frame}
+\frametitle{Formally in Java -- Constructor}
+\verbatiminput{Constructor.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Getter methods}\vspace{-1ex}
+\renewcommand{\baselinestretch}{0.6}\small\normalsize
+\verbatiminput{Getters.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Setter Methods}
+\renewcommand{\baselinestretch}{0.7}\small\normalsize
+\verbatiminput{Setters.java}
+
+(Likewise for \texttt{setYear}.)
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Printing of Objects by the \texttt{toString} Method}
+\verbatiminput{ToString.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Checking equality by the \texttt{equals} Method}
+\verbatiminput{Equals.java}
+\end{frame}
+
+\begin{frame}
+\def\mp{$\mapsto$}
+\def\false{\raisebox{-0.6ex}{\tt false}}
+\def\true{\raisebox{-0.6ex}{\tt true}}
+\frametitle{Some boolean expressions}
+\begin{tabular}{p{0.5\textwidth}p{0.2\textwidth}p{0.4\textwidth}}
+    \tt    \raisebox{-0.3ex}{3 == 4} & \mpause \raisebox{0.3ex}[-0.3ex]{\mp} &  false\\
+  \mpause \tt 3 > 4  & \mpause \mp &  \false\\ 
+  \mpause \tt 3 < 4  & \mpause \mp &  \true \\  
+  \mpause \tt 3 < 4 \&\& 4 < 5 & \mpause \mp &  \true \\
+  \mpause \tt 4 < 3 || 4 < 5 & \mpause \mp &  \true \\  
+  \mpause \tt !(4 < 3 || 4 < 5) & \mpause \mp &  \false \\  
+  \mpause \tt (4 < 3 || 4 < 5) \&\& 3 == 4 & \mpause \mp &  \false \\
+  \mpause \tt "test".equals("test")& \mpause \mp &  \true \\  
+  \mpause \tt "test1".equals("test2")& \mpause \mp &  \false \\ 
+\end{tabular}
+\end{frame}
+
+\begin{frame}
+\frametitle{Another EXAMPLE -- BankAccount}
+\verbatiminput{BHeader.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Constructor}
+\verbatiminput{BConstructor.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Getter methods}\vspace{-1ex}
+\renewcommand{\baselinestretch}{0.6}\small\normalsize
+\verbatiminput{BGetters.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Setter Methods}
+\renewcommand{\baselinestretch}{0.7}\small\normalsize
+\verbatiminput{BSetters.java}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Printing of Objects by the \texttt{toString} Method}
+\verbatiminput{BToString.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Checking equality by the \texttt{equals} Method}
+\verbatiminput{BEquals.java}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{JavaDoc}\renewcommand{\baselinestretch}{0.9}\small\normalsize
+  Write comments in the following form
+\verbatiminput{JavaDoc.java}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\texttt{javac} vs \texttt{javadoc}}
+
+With \texttt{javac} we compile the \texttt{.java} file:\\
+\mcolor{blue}{\texttt{javac BankAccount.java}}
+
+With \texttt{javadoc} we extract documentation from it:\\
+\mcolor{blue}{\texttt{javadoc -author -version BankAccount.java}}
+
+We use the tags:
+\begin{itemize}
+\item \color{blue}{}\texttt{\@author}\color{black}\quad (author of a class)
+\item \color{blue}{}\texttt{\@version}\color{black}\quad (the date when class written, e.g.)
+\item \color{blue}{}\texttt{\@param}\color{black}\quad (one entry for each parameter)
+\item \color{blue}{}\texttt{\@return}\color{black}\quad (return value for non void methods)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{JUnit Testing}
+
+In JUnit testing we compare the \mcolor{blue}{expected result} of a method or a computation to the \mcolor{blue}{actual result}. If the result agrees then the test \mcolor{blue}{passes}, otherwise it \mcolor{blue}{fails}.
+
+We use initially only \texttt{assertEquals}, \texttt{assertFalse}, and
+\texttt{assertTrue}.
+
+Details on
+\url{http://junit.org/}
+
+For a fuller list of assertions see:\\
+\url{https://github.com/junit-team/junit/wiki/Assertions}\bigskip
+
+Write the tests into a class with an appropriate name, e.g.
+\mcolor{blue}{\texttt{Name.java}}, compile it with \mcolor{blue}{\texttt{javac Name.java}},\\
+and run it with
+\mcolor{blue}{\texttt{java org.junit.runner.JUnitCore Name}}.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{JUnit Testing}
+
+\verbatiminput{junitExample1.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{JUnit Testing (Cont'd)}
+
+\verbatiminput{junitExample2.java}
+\end{frame}
+
+
+\end{document}
