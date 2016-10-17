@@ -1,11 +1,9 @@
 package Ex1;
 
-/**
- * EMPLOYEE CLASS
- */
+ // EMPLOYEE CLASS
 
 /**
- * Fraction is a class for a an employee
+ * Employee is a class for a an employee
  * at a company. The class objects are created with
  * the employee's names and start date.
  * @author Thomas Brereton
@@ -14,9 +12,7 @@ package Ex1;
 
 public class Employee{
 
-    /**
-     * FIELD VARIABLES
-     */
+     // FIELD VARIABLES
 
     // we declare the field variables
     private String firstName;

@@ -125,22 +125,20 @@ public class Fraction{
      * We use a add method to perform the
      * summation of two fractions
      */
-//    public Fraction add(Fraction summand) {
-//        int numeratorSum = this.getNumerator() * summand.getDenominator() +
-//                summand.getNumerator() * this.getDenominator();
-//        int denominatorSum = this.getDenominator() * summand.getDenominator();
-//
-//        this.setNumerator(numeratorSum);
-//        this.setDenominator(denominatorSum);
-//    }
-//
-//    public Fraction multiply(Fraction factor) {
-//        int numeratorProduct = this.getNumerator() * factor.getNumerator();
-//        int denominatorProduct = this.getDenominator() * factor.getDenominator();
-//
-//        this.setNumerator(numeratorProduct);
-//        this.setDenominator(denominatorProduct);
-//    }
+    public Fraction add(Fraction summand) {
+        int numeratorSum = this.getNumerator() * summand.getDenominator() +
+                summand.getNumerator() * this.getDenominator();
+        int denominatorSum = this.getDenominator() * summand.getDenominator();
+
+        return new Fraction(numeratorSum, denominatorSum);
+    }
+
+    public Fraction multiply(Fraction factor) {
+        int numeratorProduct = this.getNumerator() * factor.getNumerator();
+        int denominatorProduct = this.getDenominator() * factor.getDenominator();
+
+        return new Fraction(numeratorProduct, denominatorProduct);
+    }
 
     public boolean less(Fraction comp) {
         int thisNumeratorProduct = this.getNumerator() * comp.getDenominator();

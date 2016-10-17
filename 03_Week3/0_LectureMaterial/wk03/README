@@ -1,0 +1,40 @@
+(setq week 3)
+(load-file "../aux.el")
+
+(setq topics '(
+"Types, Conditionals, Loops, Arrays, ArrayLists"
+
+
+"Some slides"
+("slides/s3.pdf" "some slides")
+("slides/s3-print.pdf" "slides - 8 slides on a page")
+
+"Types"
+("DoubleMain.java"     "A problem with double")
+("TypeCastingMain.java" "Type casting")
+("StringMain.java" "Strings revisited")
+
+"Conditionals"
+("ConditionalMain.java" "if, if else")
+("SwitchMain.java" "switch")
+("Amount.java" "The Amount class to use exact integer computation instead of approximative double computation")
+("AmountTest.java" "JUnit tests for the Amount class")
+("Transaction.java" "The Transaction class is used to create statements")
+("BankAccount.java" "The BankAccount example revisited")
+("BankAccountMain.java" "main method for the BankAccount example")
+
+"Loops"
+("ForMain.java" "for loop")
+("WhileMain.java" "while loop")
+("ForWhileMain.java" "summing up")
+
+"Arrays, ArrayLists"
+("ArrayMain.java" "Some examples of arrays")
+("ArrayListMain.java" "Some examples of ArrayLists")
+
+))
+
+
+
+(write-web-page "README")
+;(cp topics)

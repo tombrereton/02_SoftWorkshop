@@ -1,0 +1,382 @@
+\documentclass{beamer}
+\def\java{\texttt{Java}}
+\def\mytoday{12 October 2016}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{code}
+%\usepackage{bm}
+\usepackage{beamerthemesplit}
+\defbeamertemplate*{footline}{infolines theme}{
+\hspace*{2ex} 
+\copyright Manfred Kerber\hfill
+   \insertpagenumber{} / \insertpresentationendpage \hspace*{2ex}
+  \vskip1ex}
+\usepackage{pgfpages}\def\mpause{\pause}
+%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=1mm, landscape]\def\mpause{}
+
+\def\mcolor#1#2{\rule{0ex}{0ex}\color{#1}#2\color{black}{}}
+\usetheme{Copenhagen}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+\makeatletter % code block to allow custom labels to be cross-ref'ed; see comp.text.tex "customized display labels cross-ref'd"
+\begin{document}
+
+\title{MSc/ICY Software Workshop\\
+Type Casting, Syntactic Sugar\\
+Conditionals, Loops, Loop Invariants\\
+Arrays, ArrayLists}
+
+
+\author[Manfred~Kerber]{\begin{tabular}{ll}
+\mcolor{blue}{Manfred Kerber} &   {\tt www.cs.bham.ac.uk/\~{}mmk}\\
+\end{tabular}}
+
+\date{\mytoday}
+
+\begin{frame}
+\titlepage
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Characters and Strings}
+\texttt{String s;}\\
+\texttt{s = "Hello, Java";}
+
+
+With \mcolor{blue}{\texttt{s.length()}} you get the length of string \texttt{s}.
+
+With \mcolor{blue}{\texttt{s.charAt(4)}} the 4th character in the string \texttt{s}.
+(Careful, we start to count with zero!)
+
+\mcolor{blue}{\texttt{s.substring(0,4)}} returns a substring of \texttt{s} from the 0th
+element (inclusively) to the 4th element (exclusively).
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Type Casting}
+
+Some types can be converted, some not. Examples are:
+\texttt{byte b;}\\
+\texttt{short s;}\\
+\texttt{int i;}\\
+\texttt{long l;}\\[3ex]
+\texttt{float f;}\\
+\texttt{double d;}\\[3ex]
+\texttt{char c;}\\
+\texttt{l = Long.MAX\_VALUE / 48;}\\
+\texttt{i = \mcolor{blue}{(int)} l;}\\
+\texttt{s = \mcolor{blue}{(short)} i;}\\
+\texttt{b = \mcolor{blue}{(byte)} s;}\\
+\texttt{f = \mcolor{blue}{(float)} i;}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Type Casting (Cont'd)}
+\texttt{d = 123.856778;}\\
+\texttt{i = \mcolor{blue}{(int)} d;}\\[3ex]
+\texttt{i = 123;}\\
+\texttt{c = \mcolor{blue}{(char)} i;}\\[3ex]
+\texttt{c = 'A';}\\
+\texttt{i = \mcolor{blue}{(int)} c;}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Some syntactic sugar}
+\verbatiminput{sugar1.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Some syntactic sugar (Cont'd)}
+\verbatiminput{sugar2.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{static}, \texttt{final}, \texttt{public}, \texttt{private}}
+When defining a class we typically initialize objects with variables,
+e.g. when we define a \texttt{BankAccount} we may have an account
+number and an initial balance. Since the account number never
+changes, we can enforce this by declaring:
+
+\texttt{\mcolor{blue}{final int} ACCOUNT\_NUMBER = acNumber;}
+
+Obviously the account numbers should be \mcolor{red}{different} for different
+accounts.
+\end{frame}
+
+\begin{frame}
+  \frametitle{\texttt{static}, \texttt{final}, \texttt{public}, \texttt{private} (Cont'd)}
+In contrast when we speak about variables which are the same for
+all objects in a class -- e.g., the interest rate could be the same for
+all accounts of a particular type -- we call these variables \texttt{\mcolor{blue}{static}}.
+
+E.g., if we want to have a verbose and non-verbose mode for all
+objects in a class \texttt{C} then we can define this by
+
+\texttt{\mcolor{blue}{public static boolean verbose;}}
+
+and access it as
+
+\texttt{C.verbose = false;}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\texttt{static}, \texttt{final}, \texttt{public}, \texttt{private} (Cont'd)}
+If something is \mcolor{blue}{\texttt{static}} \textit{and} \mcolor{blue}{\texttt{final}} we can declare this by
+
+\texttt{\mcolor{blue}{static final double CM\_PER\_INCH = 2.54;}}
+
+If \mcolor{blue}{\texttt{public}} or \mcolor{blue}{\texttt{private}} in addition:
+
+\texttt{\mcolor{blue}{public static final double CM\_PER\_INCH = 2.54;}}
+
+or
+
+\texttt{\mcolor{blue}{private static final double CM\_PER\_INCH = 2.54;}}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Conditionals -- \texttt{if}}
+
+\mcolor{blue}{Remember BankAccount: We want to allow withdrawals only
+maximally until the balance is zero. How?}\mpause
+
+\mcolor{red}{\textsl{If the condition is \texttt{true} the body is evaluated}}
+
+\texttt{\ \mcolor{blue}{if} (<cond>)\{ }\\
+\texttt{\ \ \ \ <command>*}\\
+\texttt{\ \}}\\[2ex]
+
+In case of one \texttt{command} also
+
+\texttt{\ \mcolor{blue}{if} (<cond>) }\\
+\texttt{\ \ \ \ <command>}\\[3ex]
+
+\mcolor{red}{Example:}\\[1ex]
+
+\texttt{\ \mcolor{blue}{if} (x < 0)\{ }\\
+\texttt{\ \ \ \ \ x = -x;}\\
+\texttt{\ \}}\\
+  
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Conditionals -- \texttt{if else}}
+\mcolor{red}{\textsl{If the condition is \texttt{true} the `then' part
+is evaluated else the `else' part}}
+
+\renewcommand{\baselinestretch}{0}
+\texttt{\ \mcolor{blue}{if} (<cond>) \{}\\
+\texttt{\ \ \ \ <command>*}\\
+\texttt{\ \}\ \mcolor{blue}{else}\ \{}\\
+\texttt{\ \ \ \ <command>*}\\
+\texttt{\ \}}\\[3ex]
+
+\mcolor{red}{Example:}\\[1ex]
+
+\texttt{\ \mcolor{blue}{if} (x >= 0) \{}\\
+\texttt{\ \ \ \ \ x = Math.sqrt(x);}\\
+\texttt{\ \}\ \mcolor{blue}{else}\ \{}\\
+\texttt{\ \ \ \ \ x = Math.sqrt(-x);}\\
+\texttt{\ \}}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Nested \texttt{if} statements}
+\texttt{String str = "evening";}\\
+\texttt{\mcolor{blue}{if} (str.equals("morning"))}\\
+\texttt{\ \ System.out.println("Have a good day");}\\
+\texttt{\mcolor{blue}{else} \mcolor{blue}{if} (str.equals("noon"))}\\
+\texttt{\ \ System.out.println("Enjoy your lunch.");}\\
+\texttt{\mcolor{blue}{else} \mcolor{blue}{if} (str.equals("afternoon"))}\\
+\texttt{\ \ System.out.println("Good afternoon, see you soon");}\\
+\texttt{\mcolor{blue}{else} \mcolor{blue}{if} (str.equals("evening"))}\\
+\texttt{\ \ System.out.println("See you tomorrow");}\\
+\texttt{\mcolor{blue}{else} }\\
+\texttt{\ \ System.out.println("Oops. I don't understand.");}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{switch} statements}
+
+\mcolor{blue}{\texttt{switch}} provides a convenient way to select between different elements of
+\texttt{byte}, \texttt{short}, \texttt{char}, and \texttt{int} data types with the syntax:\\[3ex]
+\texttt{\ \ \mcolor{blue}{switch}(var)\{}\\
+\texttt{\ \ \ \ \ \ \mcolor{blue}{case} value1\mcolor{blue}{:} ... \mcolor{blue}{break};}\\
+\texttt{\ \ \ \ \ \ \mcolor{blue}{case} value2\mcolor{blue}{:} ... \mcolor{blue}{break};}\\
+\texttt{\ \ \ \ \ \ ...}\\
+\texttt{\ \ \ \ \ \ \mcolor{blue}{default}\mcolor{blue}{:} ... \mcolor{blue}{break};}\\
+\texttt{\ \ \ \ \ \}}\\
+\bigskip
+
+If the default is missing and none of the cases occurs then the switch
+statement does nothing.
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{while} loop}
+
+\mcolor{red}{In a} \mcolor{blue}{\texttt{while}} \mcolor{red}{loop we distinguish the condition
+(included in round brackets) and the body of the loop (included in
+curly brackets). If the condition is true the body is executed
+repeatedly until the condition is false after executing the body in
+full.}
+
+Syntax\bigskip
+
+\texttt{\ \ \mcolor{blue}{while (}<cond>\mcolor{blue}{)} \{}\\
+\texttt{\ \ <command>*}\\
+\texttt{\ \ \}}\bigskip
+
+Example:\bigskip
+
+\texttt{int i = 0 ;}\\
+\texttt{\mcolor{blue}{while (}i <  7\mcolor{blue}{)} \{}\\
+\texttt{\ \ i = i+1; }\\
+\texttt{\ \ System.out.print(i + " ");}\\
+\texttt{\}}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{for} loops}
+
+\mcolor{red}{A} \mcolor{blue}{\texttt{for}} \mcolor{red}{loop is similar to a while loop, however, in the round brackets
+we declare and initialize an iteration variable, separate by a semicolon the
+termination condition and again by a semicolon the update expression for the
+iteration variable.}
+
+Syntax e.g.,\bigskip
+
+\texttt{\ \mcolor{blue}{for (}int i = 0 \mcolor{blue}{;} i <=n \mcolor{blue}{;} i++\mcolor{blue}{)} \{}\\
+\texttt{\ \ \ \ \ \  System.out.print(i + " ");}\\
+\texttt{\ \ \ \ \ \}}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{A loop}
+\verbatiminput{gcd.java}
+
+\mcolor{blue}{\textbf{What does it do?}}\\
+\mcolor{blue}{\textbf{Does it terminate?}}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Loop Invariant}
+
+\mcolor{blue}{Need good documentation of loops, in particular, a loop invariant
+ in order to understand the loops}
+
+\verbatiminput{gcd-inv.java}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Arrays}
+\mcolor{blue}{`An array is a data structure for storing a collection
+  of values of the same type'} [Horstmann, Cornell, Core Java, p.90]
+
+E.g., 
+\verbatiminput{array.java}
+
+Careful: The lowest index \texttt{i} is 0 the biggest \texttt{length-1},
+that is, in this case \texttt{99}. 
+\mcolor{blue}{It is easy to make mistakes involving array bounds. Hence, there should be test cases which check them.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Loops on Arrays}
+There are different possibilities:\\[1ex]
+\texttt{for (int i=0; i < a.length; i++)\{}\\
+\texttt{\ \ \ \ \ System.out.print(a[i] + " ");}\\
+\texttt{\}}\bigskip
+
+Better: write\\[1ex]
+\texttt{for (int element : a)\{}\\
+\texttt{\ \ \ \ \ System.out.print(element + " ");}\\
+\texttt{\}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Initialization of Arrays}
+
+\texttt{\ \ int [] c = \{2, 5, 24, 6\};}\\\bigskip
+  
+\texttt{\ \ for (int element : c)\{}\\
+\texttt{\ \ \ \ \ \ \ \ System.out.print(element + " ");}\\
+\texttt{\ \ \}}\\
+\end{frame}
+
+\begin{frame}
+\frametitle{Two-dimensional arrays}
+Taken from [Deitel and Deitel, Java, 8th ed., 7.9, p. 274]
+
+A two-dimensional array is an array of one-dimensional arrays.
+\texttt{a[row][column]} declared and initialized e.g., by
+
+\verbatiminput{two-dim-array-ex.java}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Two-dimensional arrays (Cont'd)}
+Example: TitTacToe taken from [Horstmann, Big Java, p. 288]
+
+\verbatiminput{two-dim-array.java}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Two-dimensional arrays (Cont'd)}
+Example multiplication table:
+\verbatiminput{multiplication.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{System.out.printf\\
+Two-dimensional arrays (Cont'd)}
+Two-dimensional arrays can be be initialized in an easy way
+as shown in the example.
+\verbatiminput{two-dim.java}
+(see \texttt{PrintfTest.java})
+\end{frame}
+\begin{frame}
+\frametitle{\texttt{ArrayList}}
+
+Comparable to arrays, but without fixed size.\\
+Only on objects. E.g.,
+
+\def\baselinestretch{0.5}\def\arraystretch{0.5}
+\begin{itemize}\def\arraystretch{0.5}
+\item \texttt{ArrayList<String> items = new ArrayList<String>();}
+\item \texttt{ArrayList<String> items = new ArrayList<String>(1000);}
+\item \texttt{items.add("newString");}
+\item \texttt{item.size()} corresponds to \texttt{length} of an array.
+%\item \texttt{void ensureCapacity(int capacity);} minimal capacity
+\item \texttt{void trimToSize()}; reduce storage size.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{\texttt{ArrayList} (Cont'd)}
+  \texttt{ArrayList} is not a basic construct, a particular library
+  has to be loaded. This is done by writing at the top of the class file
+
+\mcolor{blue}{\texttt{import java.util.ArrayList;}}
+
+More information can be found from the API (Application Programming
+Interface).  The API documentation is part of the JDK (Java
+Development Kit) from Oracle's Java pages.
+\end{frame}
+
+\end{document}
