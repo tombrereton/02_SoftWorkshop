@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class Ws2Ex3PublicTests {
 
-	private Weight w1, w2;
+	private Ex3.Weight w1, w2;
 
 	@Before
 	public void setUp() {
