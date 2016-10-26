@@ -1,0 +1,186 @@
+\documentclass{beamer}
+\def\java{\texttt{Java}}
+\def\mytoday{19 October 2016}
+\usepackage{pgfpages}\def\mpause{\pause}
+%\usepackage{pgfpages}\pgfpagesuselayout{8 on 1}[a4paper,border shrink=1mm, landscape]\def\mpause{}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{code}
+\usepackage{textcomp}
+
+%\usepackage{bm}
+\usepackage{beamerthemesplit}
+\defbeamertemplate*{footline}{infolines theme}{
+\hspace*{2ex}    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+\copyright Manfred Kerber
+%   \insertpagenumber{} / \insertpresentationendpage \hspace*{2ex}
+  \vskip1ex}
+
+\def\mcolor#1#2{\rule{0ex}{0ex}\color{#1}#2\color{black}{}}
+\usetheme{Copenhagen}
+%\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}\def\mpause{\pause}
+\makeatletter % code block to allow custom labels to be cross-ref'ed; see comp.text.tex "customized display labels cross-ref'd" 
+
+\begin{document}
+
+\title{MSc/ICY Software Workshop\\
+Exception Handling, Assertions\\Scanner, Patterns\\File Input/Output}
+
+\author[Manfred~Kerber]{\begin{tabular}{ll}
+\mcolor{blue}{Manfred Kerber} &   {\tt www.cs.bham.ac.uk/\~{}mmk}\\
+\end{tabular}}
+
+\date{\mytoday}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Classes and Objects}
+
+The information we have about a particular object is encapsulated in
+so-called \mcolor{blue}{field variables}. First, we have to clarify
+which ones that should be.
+
+In order to create and manipulate objects we always have:
+
+
+\begin{itemize}
+\item At least one \mcolor{blue}{constructor} (for the creation of objects)
+\item \mcolor{blue}{getter}s are methods to get the components of objects back.
+\item \mcolor{blue}{setter}s are methods to change components of objects.
+\item The \mcolor{blue}{\texttt{toString()}} method is used when the object is to be printed. Without it, an object is not printed in a human readable way.
+\item In order to check two objects for equality we can write a method 
+\mcolor{blue}{\texttt{equals}}.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Multiple Constructors}
+
+You may construct objects (as characterized by the field variables) using constructors with different number of arguments (or different types in the arguments).
+
+E.g.,
+
+\verbatiminput{constructor.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problems with User Input}
+\mcolor{blue}{How to deal with problems of input?} \\
+Not under control of the programmer\\\bigskip
+\verbatiminput{no-exception.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exceptions}
+Exceptions are used to deal with errors
+\verbatiminput{exception.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exceptions (Cont'd)}\vspace{-3ex}\renewcommand{\baselinestretch}{0}\footnotesize
+\verbatiminput{exception1.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exceptions in general}
+\verbatiminput{exception2.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exceptions in general (Cont'd)}
+\verbatiminput{exception3.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exceptions and \texttt{finally}}
+\verbatiminput{exception4.java}
+
+Make sure that code in \texttt{catch} and \texttt{finally} never crashes!
+\end{frame}
+
+\begin{frame}
+\frametitle{Checked vs Unchecked Exceptions}
+
+\begin{itemize}
+\item \mcolor{blue}{Unchecked Exceptions} may or may not be caught by the program.\\
+  They deal typically with problems that are under control of the
+  programmer (e.g., an \texttt{ArrayIndexOutOfBoundsException})
+\item \mcolor{blue}{Checked Exceptions} must be caught by the program.
+  These deal typically with problems that are NOT under control of the
+  programmer (e.g.\ whether a file exists or is accessible). The Java
+  compiler enforces a catch statement for a checked exception.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Scanner for Input}
+\verbatiminput{scanner.java}
+\end{frame}
+
+\begin{frame}
+\frametitle{Patterns}
+\verbatiminput{pattern.java} 
+For a full description see 
+\href{http://download.oracle.com/javase/1.4.2/docs/api/java/util/regex/Pattern.html}{download.oracle.com/javase/1.4.2/docs/api/java/util/regex/Pattern.html}.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Pattern to Restrict Input for Scanner}
+\verbatiminput{scanner-pattern.java}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Reading from/Writing to File}\renewcommand{\baselinestretch}{0.8}\small 
+\verbatiminput{io.java}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Reading from a Web page}
+\begin{small}
+\verbatiminput{html.java}
+\end{small}
+\end{frame}
+
+\begin{frame}
+\frametitle{Throwing Exceptions}
+\verbatiminput{throw.java}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Class Invariants} 
+  In classes the implementer may want to enforce that certain field
+  variables can take values only in a restricted form, e.g., for a
+  variable \mcolor{blue}{\texttt{private String months}} not every value may be
+  allowed, but only one of \mcolor{blue}{\texttt{"January"}}, $\ldots$, \mcolor{blue}{\texttt{"December"}}.
+
+Likewise that a variable \mcolor{blue}{\texttt{private String gender}} takes only the values \mcolor{blue}{\texttt{"m"}}, \mcolor{blue}{\texttt{"f"}}, or \mcolor{blue}{\texttt{"x"}}.
+
+ If this is always the case then this is called a \mcolor{blue}{Class Invariant}.
+
+ This can be achieved by throwing an exception whenever with a
+ constructor or a setter it is tried to give the variable a value that
+ is not allowed.
+\end{frame}
+
+\begin{frame}
+\frametitle{Assertions}
+
+Assertions are used to establish that properties we are certain that
+they hold at a particular point actually do hold. If not an exception
+will be raised -- assumed the compiler is correspondingly configured
+(by \texttt{-ea} option in `Run Configurations' and `(x)= Arguments'
+under `VM Arguments' in Eclipse). Good for debugging.
+
+\verbatiminput{assert.java}
+\end{frame}
+
+\end{document}

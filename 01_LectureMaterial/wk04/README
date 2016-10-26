@@ -1,0 +1,39 @@
+(setq week 4)
+(load-file "../aux.el")
+
+(setq topics '(
+"Exception Handling, Assertions, Scanner, Patterns, File Input/Output"
+
+"Some slides"
+("slides/s4.pdf" "some slides")
+("slides/s4-print.pdf" "slides - 8 slides on a page")
+
+"Exceptions"
+("Exceptions.java"     "Exception handling in division")
+
+"Assertions"
+("AssertExample.java"     "An assertion for debugging")
+
+"File Handling"
+("ReadFromFileTest.java" "An example for buffered reader and writer.")
+("test1.in" "A test file for the previous program")
+("PGMImage.java" "An example how to read in an image and to manipulate it.")
+("ComputerScience.pgm" "An example grey scale picture.")
+
+"An interactive variant of the BankAccount class"
+("BankAccount.java" "The BankAccount example revisited")
+("Transaction.java" "An auxiliary class for BankAccount")
+("Customer.java" "Another auxiliary class for BankAccount")
+("BankAccounts.java" "An interactive way to handle bank accounts")
+
+"Code resivion"
+("Estimate.java" "The Estimate class revisited")
+("EstimateTest.java" "The JUnit tests for Estimate.java")
+("EstimateThrow.java" "Throwing an exception")
+
+))
+
+
+
+(write-web-page "README")
+;(cp topics)

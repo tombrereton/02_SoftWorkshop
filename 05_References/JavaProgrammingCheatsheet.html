@@ -1,0 +1,1064 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0050)http://introcs.cs.princeton.edu/java/11cheatsheet/ -->
+<html lang="en" class="gr__introcs_cs_princeton_edu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="apple-touch-icon" href="http://introcs.cs.princeton.edu/apple-touch-icon.png">
+<link rel="shortcut icon" href="http://introcs.cs.princeton.edu/favicon.ico">
+
+<link rel="stylesheet" href="./JavaProgrammingCheatsheet_files/introcs.css" type="text/css" media="screen">
+
+<meta name="google-site-verification" content="nYspbl5bNBQrNZKguiAAFTMVM7sq2P1WQYc8Oi6Okl0">
+<meta name="msvalidate.01" content="D4B7F6DF793EFF34DE96F611C2A367A5">
+<!-- IE HACKS -->
+<!--[if IE]>
+<style type="text/css" media="screen">
+ #menu ul li {float: left; width: 100%;}
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+<style type="text/css" media="screen">
+body {
+behavior: url(/csshover.htc);
+} 
+#menu ul li {float: left; width: 100%;}
+#menu ul li a {height: 1%;} 
+
+#menu a, #menu h2 {
+font: bold 0.9em/1.5em arial, helvetica, sans-serif;
+} 
+
+</style>
+<![endif]-->
+
+<script async="" src="./JavaProgrammingCheatsheet_files/async-ads.js"></script><script type="text/javascript" async="" src="./JavaProgrammingCheatsheet_files/cse.js"></script><script async="" src="./JavaProgrammingCheatsheet_files/analytics.js"></script><script type="text/javascript" src="./JavaProgrammingCheatsheet_files/MathJax.js"></script>
+
+<!-- scale font size for MathJax -->
+<script type="text/x-mathjax-config;executed=true"> 
+    MathJax.Hub.Config({ 
+        "HTML-CSS": { scale: 90, linebreaks: { automatic: true } }, 
+        SVG: { linebreaks: { automatic:true } }, 
+        displayAlign: "left" });
+</script>
+
+<title>
+Java Programming Cheatsheet</title>
+<script type="text/javascript" src="./JavaProgrammingCheatsheet_files/swfobject.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-10811519-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<meta name="AUTHOR" content="Robert Sedgewick and Kevin Wayne">
+<meta name="KEYWORDS" content="Java Programming Cheatsheet,Java,Programming,interdisciplinary,Computer science,cs,intro,introduction,sedgewick,wayne">
+<meta name="DESCRIPTION" content="This textbook provides an interdisciplinary approach to the CS 1 curriculum. We teach the classic elements of programming, using an " objects-in-the-middle"="" approach="" that="" emphasizes="" data="" abstraction.="" a="" key="" feature="" of="" the="" book="" is="" manner="" in="" which="" we="" motivate="" each="" programming="" concept="" by="" examining="" its="" impact="" on="" specific="" applications,="" taken="" from="" science,="" engineering,="" and="" commerce."="">
+<meta name="TITLE" content="Java Programming Cheatsheet. Introduction to Programming in Java by Sedgewick and Wayne">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="verify-v1" content="D4o9ikkHbNKapHncCP8ZmiD9Z2DBbrJyaSV0lyce+3w=">
+
+
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script src="./JavaProgrammingCheatsheet_files/jsapi" type="text/javascript"></script><style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><link type="text/css" href="./JavaProgrammingCheatsheet_files/default+en.css" rel="stylesheet"><link type="text/css" href="./JavaProgrammingCheatsheet_files/default.css" rel="stylesheet"><script type="text/javascript" src="./JavaProgrammingCheatsheet_files/default+en.I.js"></script><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">
+.gsc-control-cse {
+font-family: Arial, sans-serif;
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-control-cse .gsc-table-result {
+font-family: Arial, sans-serif;
+}
+input.gsc-input {
+border-color: #D9D9D9;
+}
+input.gsc-search-button {
+border-color: #666666;
+background-color: #CECECE;
+}
+.gsc-tabHeader.gsc-tabhInactive {
+border-color: #E9E9E9;
+background-color: #E9E9E9;
+}
+.gsc-tabHeader.gsc-tabhActive {
+border-top-color: #FF9900;
+border-left-color: #E9E9E9;
+border-right-color: #E9E9E9;
+background-color: #FFFFFF;
+}
+.gsc-tabsArea {
+border-color: #E9E9E9;
+}
+.gsc-webResult.gsc-result,
+.gsc-results .gsc-imageResult {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-webResult.gsc-result:hover,
+.gsc-imageResult:hover {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gsc-webResult.gsc-result.gsc-promotion:hover {
+border-color: #FFFFFF;
+background-color: #FFFFFF;
+}
+.gs-webResult.gs-result a.gs-title:link,
+.gs-webResult.gs-result a.gs-title:link b,
+.gs-imageResult a.gs-title:link,
+.gs-imageResult a.gs-title:link b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:visited,
+.gs-webResult.gs-result a.gs-title:visited b,
+.gs-imageResult a.gs-title:visited,
+.gs-imageResult a.gs-title:visited b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:hover,
+.gs-webResult.gs-result a.gs-title:hover b,
+.gs-imageResult a.gs-title:hover,
+.gs-imageResult a.gs-title:hover b {
+color: #0000CC;
+}
+.gs-webResult.gs-result a.gs-title:active,
+.gs-webResult.gs-result a.gs-title:active b,
+.gs-imageResult a.gs-title:active,
+.gs-imageResult a.gs-title:active b {
+color: #0000CC;
+}
+.gsc-cursor-page {
+color: #0000CC;
+}
+a.gsc-trailing-more-results:link {
+color: #0000CC;
+}
+.gs-webResult .gs-snippet,
+.gs-imageResult .gs-snippet,
+.gs-fileFormatType {
+color: #000000;
+}
+.gs-webResult div.gs-visibleUrl,
+.gs-imageResult div.gs-visibleUrl {
+color: #008000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+color: #008000;
+}
+.gs-webResult div.gs-visibleUrl-short {
+display: none;
+}
+.gs-webResult div.gs-visibleUrl-long {
+display: block;
+}
+.gs-promotion div.gs-visibleUrl-short {
+display: none;
+}
+.gs-promotion div.gs-visibleUrl-long {
+display: block;
+}
+.gsc-cursor-box {
+border-color: #FFFFFF;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-page {
+border-color: #E9E9E9;
+background-color: #FFFFFF;
+color: #0000CC;
+}
+.gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+border-color: #FF9900;
+background-color: #FFFFFF;
+color: #0000CC;
+}
+.gsc-webResult.gsc-result.gsc-promotion {
+border-color: #336699;
+background-color: #FFFFFF;
+}
+.gsc-completion-title {
+color: #0000CC;
+}
+.gsc-completion-snippet {
+color: #000000;
+}
+.gs-promotion a.gs-title:link,
+.gs-promotion a.gs-title:link *,
+.gs-promotion .gs-snippet a:link {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:visited,
+.gs-promotion a.gs-title:visited *,
+.gs-promotion .gs-snippet a:visited {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:hover,
+.gs-promotion a.gs-title:hover *,
+.gs-promotion .gs-snippet a:hover {
+color: #0000CC;
+}
+.gs-promotion a.gs-title:active,
+.gs-promotion a.gs-title:active *,
+.gs-promotion .gs-snippet a:active {
+color: #0000CC;
+}
+.gs-promotion .gs-snippet,
+.gs-promotion .gs-title .gs-promotion-title-right,
+.gs-promotion .gs-title .gs-promotion-title-right * {
+color: #000000;
+}
+.gs-promotion .gs-visibleUrl,
+.gs-promotion .gs-visibleUrl-short {
+color: #008000;
+}
+.gsc-input input.gsc-input {
+background: none repeat scroll 0% 0% white !important;
+}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gscsep_a{display:none}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 7px}.gssb_e{border:0}.gssb_l{margin:5px 0}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><script type="text/javascript" src="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content/frame.js"></script></head>
+
+
+
+
+
+<body data-gr-c-s-loaded="true" class=""><div id="MathJax_Message" style="display: none;"></div>
+
+<div id="menu">
+   <div align="center">
+<a class="picture" href="http://introcs.cs.princeton.edu/home">
+<img src="./JavaProgrammingCheatsheet_files/cover.png" width="190" border="0" alt="Introduction to Programming in Java">
+</a>
+</div>
+
+
+
+
+
+
+<ul>
+  <li><a class="title" href="http://introcs.cs.princeton.edu/java/home">Intro to Programming</a>
+    <ul>
+
+      <li> <a href="http://introcs.cs.princeton.edu/java/10elements">1.&nbsp;&nbsp;Elements of Programming</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/11hello">1.1&nbsp;&nbsp;Your First Program</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/12types">1.2&nbsp;&nbsp;Built-in Types of Data</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/13flow">1.3&nbsp;&nbsp;Conditionals and Loops</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/14array">1.4&nbsp;&nbsp;Arrays</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/15inout">1.5&nbsp;&nbsp;Input and Output</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/16pagerank">1.6&nbsp;&nbsp;Case Study: PageRank</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/20functions">2.&nbsp;&nbsp;Functions</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/21function">2.1&nbsp;&nbsp;Static Methods</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/22library">2.2&nbsp;&nbsp;Libraries and Clients</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/23recursion">2.3&nbsp;&nbsp;Recursion</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/24percolation">2.4&nbsp;&nbsp;Case Study: Percolation</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/30oop">3.&nbsp;&nbsp;OOP</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/31datatype">3.1&nbsp;&nbsp;Using Data Types</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/32class">3.2&nbsp;&nbsp;Creating Data Types</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/33design">3.3&nbsp;&nbsp;Designing Data Types</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/34nbody">3.4&nbsp;&nbsp;Case Study: N-Body</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/40algorithms">4.&nbsp;&nbsp;Data Structures</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/41analysis">4.1&nbsp;&nbsp;Performance</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/42sort">4.2&nbsp;&nbsp;Sorting and Searching</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/43stack">4.3&nbsp;&nbsp;Stacks and Queues</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/44st">4.4&nbsp;&nbsp;Symbol Tables</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/45graph">4.5&nbsp;&nbsp;Case Study: Small World</a>
+        </li></ul>
+    </li></ul>
+</li></ul>
+
+
+
+
+
+<ul>
+  <li><a class="title" href="http://introcs.cs.princeton.edu/java/cs">Computer Science</a>
+    <ul>
+
+      <li> <a href="http://introcs.cs.princeton.edu/java/50theory">5.&nbsp;&nbsp;Theory of Computing</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/51language">5.1&nbsp;&nbsp;Formal Languages</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/52turing">5.2&nbsp;&nbsp;Turing Machines</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/53universality">5.3&nbsp;&nbsp;Universality</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/54computability">5.4&nbsp;&nbsp;Computability</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/55intractability">5.5&nbsp;&nbsp;Intractability</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/99crypto">9.9&nbsp;&nbsp;Cryptography</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/60machine">6.&nbsp;&nbsp;A Computing Machine</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/61data">6.1&nbsp;&nbsp;Representing Info.</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/62toy">6.2&nbsp;&nbsp;TOY Machine</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/63programming">6.3&nbsp;&nbsp;TOY Programming</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/64simulator">6.4&nbsp;&nbsp;TOY Simulator</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/70circuits">7.&nbsp;&nbsp;Building a Computer</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/71boolean">7.1&nbsp;&nbsp;Boolean Logic</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/72circuit">7.2&nbsp;&nbsp;Basic Circuit Model</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/73combinational">7.3&nbsp;&nbsp;Combinational Circuits</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/74sequential">7.4&nbsp;&nbsp;Sequential Circuits</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/75architecture">7.5&nbsp;&nbsp;Digital Devices</a>
+        </li></ul>
+    </li></ul>
+</li></ul>
+
+
+
+<ul>
+  <li><a class="title" href="http://introcs.cs.princeton.edu/java/home">Beyond</a>
+    <ul>
+
+      <li> <a href="http://introcs.cs.princeton.edu/java/80systems">8.&nbsp;&nbsp;Systems</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/81library">8.1&nbsp;&nbsp;Library Programming</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/82compiler">8.2&nbsp;&nbsp;Compilers</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/83os">8.3&nbsp;&nbsp;Operating Systems</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/84network">8.4&nbsp;&nbsp;Networking</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/85application">8.5&nbsp;&nbsp;Applications Systems</a>
+        </li></ul>
+
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/90scientific">9.&nbsp;&nbsp;Scientific Computation</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/91float">9.1&nbsp;&nbsp;Floating Point</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/92symbolic">9.2&nbsp;&nbsp;Symbolic Methods</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/93integration">9.3&nbsp;&nbsp;Numerical Integration</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/94diffeq">9.4&nbsp;&nbsp;Differential Equations</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/95linear">9.5&nbsp;&nbsp;Linear Algebra</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/96optimization">9.6&nbsp;&nbsp;Optimization</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/97data">9.7&nbsp;&nbsp;Data Analysis</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/98simulation">9.8&nbsp;&nbsp;Simulation</a>
+        </li></ul>
+    </li></ul>
+</li></ul>
+
+
+
+
+
+
+
+<ul>
+
+<li><a class="title"> Related Booksites</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+<td align="center">
+<a class="booksite" href="http://introcs.cs.princeton.edu/python">
+   <img src="./JavaProgrammingCheatsheet_files/cover-python.png" width="73" height="91" border="0" alt="Introduction to Programming in Python
+               by Robert Sedgewick, Kevin Wayne, and Robert Dondero">
+</a>
+</td><td align="center">
+<a class="booksite" href="http://algs4.cs.princeton.edu/">
+   <img src="./JavaProgrammingCheatsheet_files/cover(1).png" width="73" height="91" border="0" alt="Algorihtms, 4th Edition by Robert Sedgewick and Kevin Wayne">
+</a>
+</td></tr>
+</tbody></table>
+
+
+  </li><li><a class="title" href="http://introcs.cs.princeton.edu/home">Web Resources</a>
+    <ul>
+
+      <li> <a href="http://introcs.cs.princeton.edu/java/faq">FAQ</a>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/data">Data</a>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/code">Code</a>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/errata">Errata</a>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/11appendix">Appendices</a>
+        <ul>
+          <li> <a href="http://introcs.cs.princeton.edu/java/11precedence">A. &nbsp; Operator Precedence</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/11style">B. &nbsp; Writing Clear Code</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/11glossary">C. &nbsp; Glossary</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/11cheatsheet">D. &nbsp; Java Cheatsheet</a>
+          </li><li> <a href="http://introcs.cs.princeton.edu/java/11matlab">E. &nbsp; Matlab</a>
+        </li></ul>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/lectures">Lecture Slides</a>
+      </li><li> <a href="http://introcs.cs.princeton.edu/java/assignments">Programming Assignments</a>
+   </li></ul>
+
+
+</li></ul>
+
+<p><br>
+
+
+<script>
+  (function() {
+    var cx = '005649317310637734940:_d158dlngnk';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-en" dir="ltr"><form class="gsc-search-box" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><input autocomplete="off" type="text" size="10" class=" gsc-input" name="search" title="search" id="gsc-i-id1" dir="ltr" spellcheck="false" style="outline: none;"><input type="hidden" name="bgresponse" id="bgresponse"></td><td class="gsc-search-button"><input type="button" value="Search" class="gsc-search-button" title="search"></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table><table cellspacing="0" cellpadding="0" class="gsc-branding"><tbody><tr style="display: none;"><td class="gsc-branding-user-defined"></td><td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td><td class="gsc-branding-img"><img src="./JavaProgrammingCheatsheet_files/small-logo.png" class="gsc-branding-img"></td></tr></tbody></table></form></div></div>
+
+</p><p><br>
+</p></div>
+
+<div id="content">
+   <style type="text/css" media="screen">
+
+img.scale {
+    zoom: 40%;
+    -moz-transform: scale(0.4);
+    -moz-transform-origin: 0 0;
+}
+</style>
+
+
+<h1>Appendix D:  &nbsp; Java Programming Cheatsheet</h1>
+
+<p><br>
+
+This appendix summarizes the most commonly-used Java language
+features in the textbook. Here are the 
+<a href="http://introcs.cs.princeton.edu/java/11cheatsheet/api.pdf">APIs</a> of the most common libraries.
+
+</p><p>
+<br>
+
+
+</p><h3 id="HelloWorld">Hello, World.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/hello.png" alt="Hello, World in Java">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="EditCompileExecute">Editing, compiling, and executing.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/developing.png" alt="Compiling Hello, World in Java">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="BuiltInTypes">Built-in data types.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/built-in.png" alt="Built-in types of data">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="AssignmentStatements">Declaration and assignment statements.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/assignment.png" alt="Assignment statements">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="int">Integers.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/int.png" alt="int data type">
+</blockquote>
+
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/int-expressions.png" alt="Integer expressions">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="double">Floating-point numbers.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/double.png" alt="double data type">
+</blockquote>
+
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/double-expressions.png" alt="double expressions">
+</blockquote>
+
+
+
+
+<p><br>
+</p><h3 id="boolean">Booleans.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/boolean.png" alt="boolean data type">
+</blockquote>
+
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/boolean-ops.png" alt="Boolean operators">
+</blockquote>
+
+
+
+<p><br>
+</p><h3 id="ComparisonOperators">Comparison operators.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/comparison-ops.png" alt="Comparison operators">
+</blockquote>
+
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/comparison-expressions.png" alt="Comparison examples">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="SystemOut">Printing.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/system.out.print-api.png" alt="System.out.print()">
+</blockquote>
+
+
+
+<p><br>
+</p><h3 id="CommandLineArguments">Parsing command-line arguments.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/parse-api.png" alt="parsing Command-line arguments">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="Math">Math library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/math-api.png" alt="Math library API">
+</blockquote>
+
+The full <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Math.html">java.lang.Math API</a>.
+
+<p><br>
+</p><h3 id="JavaLibary">Java library calls.</h3>
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/library-calls.png" alt="Expressions that use Java library methods">
+</blockquote>
+
+
+
+
+<p><br>
+</p><h3 id="TypeConversion">Type conversion.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/casts.png" alt="Type conversion">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="If">Anatomy of an if statement.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/if.png" alt="anatomy of an if statement">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="IfElse">If and if-else statements.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/if-else.png" alt="If-else statements">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="NestedIfElse">Nested if-else statement.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/nested-if-else.png" alt="Nested if-else statements in Java">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="WhileLoops">Anatomy of a while loop.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/while.png" alt="While loop">
+</blockquote>
+
+<p><br>
+</p><h3 id="ForLoops">Anatomy of a for loop.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/for.png" alt="For loop">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="Loops">Loops.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/for-while.png" alt="While and for loops in Java">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="break">Break statement.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/break.png" alt="Break statement in Java">
+</blockquote>
+
+<p><br>
+</p><h3 id="do-while">Do-while loop.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/do-while.png" alt="Do-while loop in Java">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="switch">Switch statement.</h3>
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/switch.png" alt="Switch statement in Java">
+</blockquote>
+
+
+
+<p><br>
+</p><h3 id="Arrays">Arrays.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/array.png" alt="An array">
+</blockquote>
+
+<p>
+Inline array initialization.
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/array-init.png" alt="Inline initialization of arrays">
+</blockquote>
+
+Typical array-processing code.
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/array-examples.png" alt="Typical array-processing code">
+</blockquote>
+
+
+<h3 id="Arrays2D">Two-dimensional arrays.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/array2d.png" alt="2D array">
+</blockquote>
+
+Inline initialization.
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/array2d-init.png" alt="2D array inline initialization">
+</blockquote>
+
+<a id="stdlib"></a>
+<p><br>
+</p><h3 id="StdOut">Our standard output library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stdout-api.png" alt="Standard output API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdOut.html">StdOut API</a>.
+
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/printf.png" alt="Anatomy of printf">
+</blockquote>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/printf-formatting.png" alt="Formatting codes for printf">
+</blockquote>
+
+
+
+<p><br>
+</p><h3 id="StdIn">Our standard input library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stdin-api.png" alt="Standard input API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdIn.html">StdIn API</a>.
+
+
+
+<p><br>
+</p><h3 id="StdDraw">Our standard drawing library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stddraw-api.png" alt="Standard drawing API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdDraw.html">StdDraw API</a>.
+
+
+
+<p><br>
+</p><h3 id="StdAudio">Our standard audio library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stdaudio-api.png" alt="Standard audio API">
+</blockquote>
+
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/StdAudio.html">StdAudio API</a>.
+
+
+<p><br>
+</p><h3 id="RedirectionPiping">Redirection and piping.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/redirect-stdout.png" alt="Redirecting standard output">
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img class="scale" src="./JavaProgrammingCheatsheet_files/redirect-stdin.png" alt="Redirecting standard input">
+</blockquote>
+
+<p><br>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/piping.png" alt="Piping">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="Functions">Functions.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/function.png" alt="Anatomy of a function">
+</blockquote>
+
+<p>
+</p><blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/function-examples.png" alt="Example functions">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="StaticLibraries">Libraries of functions.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/library.png" alt="Library abstraction">
+</blockquote>
+
+<p><br>
+</p><h3 id="StdRandom">Our standard random library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stdrandom-api.png" alt="Standard random">
+</blockquote>
+
+<p><br>
+</p><h3 id="StdStats">Our standard statistics library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stdstats-api.png" alt="Standard statistics">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="UsingObjects">Using an object.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/object.png" alt="Using an object">
+</blockquote>
+
+
+<p><br>
+</p><h3 id="InstanceVariables">Instance variables.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/instance-variables.png" alt="Anatomy of instance variables">
+</blockquote>
+
+<p><br>
+</p><h3 id="Constructors">Constructors.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/constructor.png" alt="Anatomy of a constructor">
+</blockquote>
+
+<p><br>
+</p><h3 id="InstanceMethods">Instance methods.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/instance-method.png" alt="Anatomy of an instance method">
+</blockquote>
+
+<p><br>
+</p><h3 id="Classes">Classes.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/class.png" alt="Anatomy of a class">
+</blockquote>
+
+<p><br>
+</p><h3 id="ObjectLibraries">Object-oriented libraries.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/library-oop.png" alt="Object-oriented library abstraction">
+</blockquote>
+
+
+
+<p></p><h3 id="String">Java's String data type.</h3>
+
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/string-api.png" alt="String library API">
+</blockquote>
+
+The full <a href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html">java.lang.String API</a>.
+
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/string-ops.png" alt="String operations">
+</blockquote>
+
+<p></p><h3 id="Color">Java's Color data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/color-api.png" alt="Color library API">
+</blockquote>
+
+The full <a href="http://docs.oracle.com/javase/6/docs/api/java/awt/Color.html">java.awt.Color API</a>.
+
+<p><br>
+</p><h3 id="In">Our input library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/in-api.png" alt="Input API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/In.html">In API</a>.
+
+<p><br>
+</p><h3 id="Out">Our output library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/out-api.png" alt="Output API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/Out.html">Out API</a>.
+
+<p><br>
+</p><h3 id="Picture">Our picture library.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/picture-api.png" alt="Picture API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/stdlib/javadoc/Picture.html">Picture API</a>.
+
+<p><br>
+</p><h3 id="Stack">Our stack data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/stack-api.png" alt="Stack API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/code/javadoc/Stack.html">Stack API</a>.
+
+<p><br>
+</p><h3 id="Queue">Our queue data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/queue-api.png" alt="Queue API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/code/javadoc/Queue.html">Queue API</a>.
+
+<p><br>
+</p><h3 id="Iterable">Iterable.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/iterable-anatomy.png" alt="Anatomy of an iterable">
+</blockquote>
+
+<p><br>
+</p><h3 id="ST">Our symbol table data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/st-api.png" alt="Symbol Table API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/code/javadoc/ST.html">ST API</a>.
+
+
+<p><br>
+</p><h3 id="Set">Our set data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/set-api.png" alt="Set API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/code/javadoc/SET.html">SET API</a>.
+
+<p><br>
+</p><h3 id="Graph">Our graph data type.</h3>
+
+<blockquote>
+<img class="scale" src="./JavaProgrammingCheatsheet_files/graph-api.png" alt="Graph API">
+</blockquote>
+
+The full <a href="http://introcs.cs.princeton.edu/java/code/javadoc/Graph.html">Graph API</a>.
+
+
+<p><br>
+</p><h3 id="Errors">Compile-time and run-time errors.</h3>
+Here's a <a href="http://introcs.cs.princeton.edu/java/11cheatsheet/errors.pdf">list of errors</a> compiled  by
+Mordechai Ben-Ari.
+<!-- http://stwww.weizmann.ac.il/g-cs/benari/java/errors.pdf  -->
+It includes a list of common error message and typical mistakes that
+give rise to them.
+
+
+
+<br><br>
+<p class="footer">
+<em>Last modified on July 20, 2016.</em><br><br>
+Copyright © 2002–2016
+<a href="http://www.cs.princeton.edu/~rs" class="footer">Robert Sedgewick</a>
+and
+<a href="http://www.cs.princeton.edu/~wayne" class="footer">Kevin Wayne</a>.
+All rights reserved.
+</p></div>
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./JavaProgrammingCheatsheet_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+<table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 159px; display: none; top: 901px; left: 23px; position: absolute;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table><iframe id="evernoteClearlyArticle" frameborder="0" allowtransparency="true" scrolling="auto" class="" src="./JavaProgrammingCheatsheet_files/saved_resource.html"></iframe><div id="evernoteClearlyNextContainer" style="margin: 0px; padding: 0px; border: none; position: absolute; width: 5px; height: 5px; top: -10px; left: -10px;"></div></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span><div></div></html>

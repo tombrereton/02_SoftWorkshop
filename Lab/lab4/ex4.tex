@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\scrollmode
+\thispagestyle{empty}
+%\usepackage{latexsym}
+\usepackage{fancyhdr}
+\def\myfooter{\vfill{\footnotesize\noindent\copyright\ 2016, Manfred Kerber, School of Computer Science, University of Birmingham}}
+%\usepackage{colordvi}
+\usepackage{url}
+%\usepackage{bbm}
+%\usepackage{verbatim}
+%%%%%%%%%
+%\usepackage{listings}
+%\lstloadlanguages{Java,csh}
+%\lstset{basicstyle=\ttfamily\normalsize,columns=fixed,breaklines=true,language=Java,showstringspaces=false}
+%\lstMakeShortInline|
+
+%%%%%%%%%%
+
+\newif\ifslide\slidetrue
+\newif\ifnotes\notesfalse
+\newif\ifColour\Colourfalse
+\newif\ifpdf\pdffalse
+\usepackage{code}
+\usepackage{epsfig}
+\usepackage{a4wide}
+%\usepackage{pstricks,pst-node}
+%\addtolength{\textheight}{2.5cm}%{4ex}
+\newcommand{\myhead}[1]{\begin{center}\large\bf #1\end{center}}
+%\input{ex-macros} 
+%\includeonly{linclass}
+\begin{document}
+\myhead{Lab lecture exercises -- 21 October 2016}
+\begin{enumerate}
+
+\item Assume again the \texttt{Date} class from week 2,
+  \url{https://canvas.bham.ac.uk/courses/21955/files/3260009/}. It
+  allows to create dates that do not make sense such as \texttt{Date
+    nonsense = new Date(35, "Monday", 2016)}.  
+  \begin{enumerate}
+  \item Write a method \texttt{public static boolean admissible(int
+      day, String month, int year)} that returns \texttt{true} if and
+    only if the year is greater than 0, the month is one of the twelve
+    Strings \texttt{"January"}, $\ldots$, \texttt{"December"}, and the
+    day is a number between (inclusively) 1 and the maximal number of
+    days in the particular month. Particularly difficult is the month
+    \texttt{February}, which may have 28 or 29 days, depending on
+    whether the year is a leap year. For all years (greater than or
+    equal to 1), a leap year is a year that is divisible by 4,
+    exceptions are years that are divisible by 100 but not divisible
+    by 400.
+  \item Use the method \texttt{admissible} from above to change the
+    constructor and the setters so that the arguments are only
+    accepted if they are admissible, otherwise an exception is to be
+    thrown.
+  \end{enumerate}
+
+\item Assume you have data given as on \url{Ex2.data} in the
+  \texttt{lab4.zip} archive, that is, each line consists of exactly
+  three Strings (first, the kind of data entry, second, either an
+  empty String or a String with a link, and third, a description).
+  Read in the data and store them in an appropriate ArrayList. Use
+  this to create an html page that looks like the \texttt{README.html}
+  file in the archive of Wednesday's lecture of Week 4.
+
+\item
+
+\begin{minipage}[t]{0.4\textwidth}
+When you type \texttt{cal 2016} in the command line in Linux it
+  will give you an overview of the year as displayed to the right.
+Write a method \texttt{public static String cal(int year, int
+  firstDay)} which produces with the input \texttt{cal(2016, 5)}
+exactly this String. The 5 in the example is to indicate that the year
+starts with a Friday (Su, Mo, Tu, We, Th, Fr, Sa corresponding to
+0, 1, 2, 3, 4, 5, 6, respectively) Note that the indentations have to exactly
+match, that is, for instance for the month October in the example the
+Fridays 7, 14, 21, and 28 have to be aligned to the right.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\begin{tiny}
+\begin{verbatim}
+                            2016
+      January               February               March          
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                1  2      1  2  3  4  5  6         1  2  3  4  5  
+ 3  4  5  6  7  8  9   7  8  9 10 11 12 13   6  7  8  9 10 11 12  
+10 11 12 13 14 15 16  14 15 16 17 18 19 20  13 14 15 16 17 18 19  
+17 18 19 20 21 22 23  21 22 23 24 25 26 27  20 21 22 23 24 25 26  
+24 25 26 27 28 29 30  28 29                 27 28 29 30 31        
+31                                                                
+
+       April                  May                   June          
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                1  2   1  2  3  4  5  6  7            1  2  3  4  
+ 3  4  5  6  7  8  9   8  9 10 11 12 13 14   5  6  7  8  9 10 11  
+10 11 12 13 14 15 16  15 16 17 18 19 20 21  12 13 14 15 16 17 18  
+17 18 19 20 21 22 23  22 23 24 25 26 27 28  19 20 21 22 23 24 25  
+24 25 26 27 28 29 30  29 30 31              26 27 28 29 30        
+                                                                  
+
+        July                 August              September        
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                1  2      1  2  3  4  5  6               1  2  3  
+ 3  4  5  6  7  8  9   7  8  9 10 11 12 13   4  5  6  7  8  9 10  
+10 11 12 13 14 15 16  14 15 16 17 18 19 20  11 12 13 14 15 16 17  
+17 18 19 20 21 22 23  21 22 23 24 25 26 27  18 19 20 21 22 23 24  
+24 25 26 27 28 29 30  28 29 30 31           25 26 27 28 29 30     
+31                                                                
+
+      October               November              December        
+Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  
+                   1         1  2  3  4  5               1  2  3  
+ 2  3  4  5  6  7  8   6  7  8  9 10 11 12   4  5  6  7  8  9 10  
+ 9 10 11 12 13 14 15  13 14 15 16 17 18 19  11 12 13 14 15 16 17  
+16 17 18 19 20 21 22  20 21 22 23 24 25 26  18 19 20 21 22 23 24  
+23 24 25 26 27 28 29  27 28 29 30           25 26 27 28 29 30 31  
+30 31                                                             
+\end{verbatim}
+\end{tiny}
+\end{minipage}
+\end{enumerate}
+
+\myfooter
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
