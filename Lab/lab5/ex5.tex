@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}
+\scrollmode
+\thispagestyle{empty}
+\usepackage{fancyhdr}
+\def\myfooter{\vfill{\footnotesize\noindent\copyright\ 2016, Manfred Kerber, School of Computer Science, University of Birmingham}}
+%\usepackage{colordvi}
+\usepackage{url}
+\usepackage{code}
+\usepackage{epsfig}
+\usepackage{a4wide}
+\newcommand{\myhead}[1]{\begin{center}\large\bf #1\end{center}}
+\begin{document}
+\myhead{Lab lecture exercises -- 28 October 2016}
+
+\noindent Sorting algorithms are algorithms that leave the elements in an array
+unchanged, but bring them into an order so that the array is sorted.
+We consider two important sorting algorithms. The first,
+\texttt{selectionSort}. It is relatively easy, but inefficient and cannot be
+used on big arrays. The second, \texttt{quickSort}, is more
+complicated, but also one of the most efficient sorting algorithms.
+First however, we write a method that checks whether an array is
+sorted in increasing order.
+
+
+
+\begin{enumerate}
+\item \textbf{Method for Checking the Sortedness of an array}
+
+Write a method \texttt{public static boolean isSorted(double[] arr)} which tests\\ whether a given array is sorted in increasing order. E.g., the array\\
+\verb|a1 = {1.0, 1.1, 2.0, 2.0, 3.0}| is sorted, but the array\\
+\verb|a2 = {1.0, 1.1, 2.1, 2.0, 3.0}| is not.\bigskip
+
+\item \texttt{selectionSort}
+
+  \texttt{selectionSort} is an algorithm for sorting arrays (e.g., of
+  type \texttt{double[]}). The idea is to consider the array
+  consisting of two parts: the initial part (from the left) which is
+  sorted (and initially empty) and the rest which is unsorted (and
+  initially the whole array). In each iteration the smallest element
+  from the unsorted part is selected and put at the end of the sorted
+  part by swapping. That is, in the first round the smallest element
+  in the whole array is selected and swapped with the element at
+  position 0. In the next round the smallest element in the unsorted
+  part of the array (from position 1 on) is determined and swapped
+  with the element in position 1 and so on until the whole array is
+  sorted.  In pseudo code this is:
+\begin{verbatim}
+ int min;
+ for (int i=0; i < a.length; i++){
+       determine min as minimum between i and a.length -1;
+       swap a[i] and min;
+     }
+\end{verbatim}
+  Implement a method \texttt{public static double[]
+    selectionSort(double[] a)} in a class \texttt{Sorting.java}
+  implementing this algorithm.  Experiment with the method with some
+  randomly generated arrays using the class \texttt{SortingMain.java}
+  in the lab material for week 5 (from Canvas).\newpage
+
+\item \texttt{quickSort}
+
+  In order to get a more efficient algorithm it is necessary to reduce
+  the problem size dramatically (ideally by halving it) in each single
+  step. \texttt{quickSort} does this by determining a so-called
+  \texttt{pivot} so that all elements of the array that are smaller
+  than the pivot end up in the left sub-array and all elements that
+  are bigger than the pivot end up in the right sub-array. Then the
+  method is applied again to the left and the right sub-arrays until
+  the sub-arrays consist only of one element, which are trivially
+  sorted. Assume we are working on an array {\tt a} with entries {\tt
+    a[0],...,a[size-1]}, then we can split the set of indices. That
+  is, we consider the two sub-arrays arrays {\tt a[0],...,a[m-1]} as
+  well as {\tt a[m + 1],...,a[size-1]} and pivot \texttt{a[m]} and
+  swap elements between the two sub-arrays so that all the
+  elements in the first are smaller than or equal to \texttt{a[m]} and
+  \texttt{a[m]} is smaller than or equal to all the elements in the
+  second.
+
+  The same process is repeated on the sub-array until every sub-array
+  consists only of one element, that is, the sub-array is trivially sorted.
+
+  In our implementation, the pivot should be chosen to be the element
+  in the middle between the start and the end index of the
+  sub-array. (In general, more sophisticated ways are used.)
+
+  Implement a corresponding method\\ \texttt{public static double[]
+    quickSort(double[] a)} in the class \texttt{Sorting.java}.
+  Experiment with the method with some randomly generated arrays using
+  the class \texttt{SortingMain.java} in the lab material for week 5
+  (from Canvas).  You will find a stub \texttt{Sorting.java} in the
+  lab material for week 5 (from Canvas).
+\end{enumerate}
+
+\myfooter
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
