@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\scrollmode
+\thispagestyle{empty}
+%\usepackage{latexsym}
+\usepackage{fancyhdr}
+\def\myfooter{\vfill{\footnotesize\noindent\copyright\ 2016, Manfred Kerber, School of Computer Science, University of Birmingham}}
+%\usepackage{colordvi}
+\usepackage{url}
+%\usepackage{bbm}
+%\usepackage{verbatim}
+%%%%%%%%%
+%\usepackage{listings}
+%\lstloadlanguages{Java,csh}
+%\lstset{basicstyle=\ttfamily\normalsize,columns=fixed,breaklines=true,language=Java,showstringspaces=false}
+%\lstMakeShortInline|
+
+%%%%%%%%%%
+
+\newif\ifslide\slidetrue
+\newif\ifnotes\notesfalse
+\newif\ifColour\Colourfalse
+\newif\ifpdf\pdffalse
+\usepackage{code}
+\usepackage{epsfig}
+\usepackage{a4wide}
+%\usepackage{pstricks,pst-node}
+%\addtolength{\textheight}{2.5cm}%{4ex}
+\newcommand{\myhead}[1]{\begin{center}\large\bf #1\end{center}}
+%\input{ex-macros} 
+%\includeonly{linclass}
+\begin{document}
+\myhead{Lab lecture exercises -- 11 November 2016}
+
+\begin{enumerate}
+\item Assume the \texttt{BankAccount} class from last Wednesday,
+  follow the Canvas pages
+  \url{https://canvas.bham.ac.uk/courses/21955} at Teaching
+  \texttt{wk07.zip}.
+
+ Create
+  a sub-class \texttt{IslamicMortgageAccount} which has three additional
+  fields:
+\begin{itemize} 
+\item \texttt{private int months}, which specifies the number of
+  months over which the mortgage has to be paid back, 
+\item \texttt{private long payout}, the amount paid out to the customer initially (to buy the house), and
+\item \texttt{private long fee}, the upfront fees involved.
+\end{itemize}
+Note that for an Islamic mortgage account no interest is paid. All
+fees for the mortgage are to be included in the initial
+\texttt{fee}. The initial balance on the account is the negative of
+the sum of the \texttt{payout} and the \texttt{fee}.
+
+Implement for the class a constructor as well as getters and setters for the new
+field variables. Furthermore write two methods \texttt{public int
+  initialPayment()} and \texttt{public int followUpPayment()} such that
+the payments are evenly distributed over
+\texttt{month -1} followup months (given as
+\texttt{followUpPayment()}), the remainder has to be paid in the first month
+as \texttt{public int initialPayment()}. Also write an appropriate
+\texttt{toString()} method which specifies in addition to the
+  information given for any \texttt{BankAccount} information about the
+  \texttt{payout}, the \texttt{fee}, the \texttt{months}, the
+  \texttt{initialPayment} and the \texttt{followUpPayment}.
+
+  It should not be possible to make any withdrawals or transfers of money from an
+  \texttt{IslamicMortgageAccount}. How can we guarantee this?
+
+For instance, assume a mortgage (payout plus fee) of pounds 100000
+over 240 months, then this would be paid back as 239 equal payments of
+pounds 418 plus pounds 98 in the first month. That is,
+\texttt{initialPayment()} should return 98 and
+\texttt{followUpPayment()} should return 418.
+
+\vfill
+\hfill p.t.o.
+\newpage
+
+\item In this exercise you should extend the above mentioned \texttt{BankAccount} class to create a \texttt{SavingsAccount} which has two additional fields:
+\begin{itemize} 
+\item \texttt{private double interestRate}, which specifies the annual interest rate that is paid for the money in the account.
+\item \texttt{private ArrayList<Transaction> transactions}, an ArrayList that contains all transactions (initial balance, deposit, or withdrawal).
+\end{itemize}
+
+In addition to the usual constructor, getters and setters, and
+\texttt{toString()} method, you should write a method \texttt{public
+  int annualInterest()} which computes the total interest accumulated
+over the year. Note that the interest is paid pro rata for each of the 365
+days of the year (if the year has 366 days, no interest is paid for
+the 366th day). 
+
+For example, if the interest rate is 1\% and for the first 200 days
+there are $\pounds 1000$ in the account, for this period an interest
+of $\pounds 1000 * 0.01 * {200\over 365}$, i.e., $\pounds 5.47$,
+accrues. 
+
+If on the first day after that period another $\pounds 1000$ are
+paid in, for the remaining 165 days, the interest is computed on the
+$\pounds 2000$ that are in the account, that is, $\pounds 2000
+* 0.01 * {165\over 365}$. I.e., $\pounds 9.04$ are accrued for this
+period. This gives a total annual interest of $\pounds 5.47 + \pounds
+9.04$, which is rounded to $\pounds 15$.
+
+You have also to implement a \texttt{Transaction} class, where a single transaction should store four pieces of information:
+\begin{itemize}
+\item the day of the year (1--365), when the transaction took place (there is no interest paid for the 366th day in a leap year),
+\item the type of transaction (initial balance, deposit, or withdrawal),
+\item the amount of the transaction, and
+\item the balance after the transaction took place.
+\end{itemize}
+\end{enumerate}
+Note that single days should NOT be broken down further to compute
+e.g., an hourly interest. For computing the daily interest, the last
+balance of that day should be taken.
+
+\myfooter
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

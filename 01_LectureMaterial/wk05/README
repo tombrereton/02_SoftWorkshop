@@ -1,0 +1,35 @@
+(setq week 5)
+(load-file "../aux.el")
+
+(setq topics '(
+"Some slides"
+("slides/s5.pdf" "some slides")
+("slides/s5-print.pdf" "slides - 8 slides on a page")
+
+"The BankAccount example to exemplify the test of exceptions"
+("BankAccount.java" "The BankAccount example revisited")
+("BankAccountTest.java" "A JUnit test for BankAccount example together with a test of an exception")
+("Customer.java" "A Customer class")
+("Transaction.java" "The transaction class (to produce statements)")
+
+"Functions"
+("FunMain.java" "Some simple examples for the usage of functions")
+
+"The Payable Interface"
+("Payable.java" "The interface")
+("Invoice.java" "The Invoice implementation")
+("Employee.java" "The Employee implementation")
+("Company.java" "The Company implementation")
+("PayableMain.java" "A file with a main method")
+
+"The Holiday Interface"
+("Holiday.java" "The interface")
+("Employee.java" "The Employee implementation")
+("HolidayMain.java" "A file with a main method")
+
+
+))
+
+
+(write-web-page "README")
+;(cp topics)
