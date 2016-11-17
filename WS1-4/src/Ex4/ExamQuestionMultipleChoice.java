@@ -80,6 +80,12 @@ public class ExamQuestionMultipleChoice extends ExamQuestion {
      * on the answers provided and correct answers.
      */
     public int mark(ArrayList<Integer> answersProvided) {
+        int numberOfAnswersGiven = answersProvided.size();
+
+        // Do you find the comments here useful or is it
+        // simpler to leave it as descriptive variable names?
+        // Thank David! Found your feedback last time really
+        // useful.
 
         // We remove all the duplicates (correct answers) between
         // the answersProvided and correctAnswers
@@ -89,16 +95,16 @@ public class ExamQuestionMultipleChoice extends ExamQuestion {
         // to get the number of incorrect answers
         int numberOfIncorrectAnswersGiven = answersProvided.size();
 
-        // We take the size of the correct answers for computing the mark
-        int numberOfCorrectAnswers = this.getCorrectAnswers().size();
+        // We take the size of the correct answers given for computing the mark
+        int numberOfCorrectAnswersGiven = numberOfAnswersGiven - numberOfIncorrectAnswersGiven;
 
         // We take the difference between correct and incorrect answers,
         // or 0 if the difference is negative
-        int differenceInAnswers = Math.max(numberOfCorrectAnswers - numberOfIncorrectAnswersGiven, 0);
+        int differenceInAnswers = Math.max(numberOfCorrectAnswersGiven - numberOfIncorrectAnswersGiven, 0);
 
         // We compute the percentage of difference-in-answers in
         // correct-answers, and scale it to the maximal mark
-        return this.getMaximalMark() * (differenceInAnswers) / numberOfCorrectAnswers;
+        return this.getMaximalMark() * (differenceInAnswers) / this.getCorrectAnswers().size();
     }
 
     /**
@@ -110,7 +116,7 @@ public class ExamQuestionMultipleChoice extends ExamQuestion {
     @Override
     public String toString() {
         return super.toString() +
-                "\nProvide the index of the correct answer(s) from the following: " +
+                "\nProvide the index(s) of the correct answer(s) from the following: " +
                 this.getPossibleAnswers().toString();
     }
 }

@@ -9,7 +9,12 @@ import java.util.ArrayList;
 /**
  * This is a class called WebCrawler.
  * It contains methods to extract hyperlinks
- * from URLs
+ * from URLs.
+ *
+ * Note, this web crawler is limited to only extracting
+ * links from the anchor tag with format
+ * "<a href="blah">Title</a>
+ * Only the "blah" will be extracted.
  *
  * @author Thomas Brereton
  * @version 2016.11.15
@@ -31,24 +36,24 @@ public class WebCrawler {
         String[] tempTextArray = lineOfText.split("<a href");
 
         // We create an array which stores all the href links.
-        // We know that the number of links is half of the number of
+        // We know that the number of links is 1 less than the
         // array split by "<a href"
-        String[] tempURLs = new String[tempTextArray.length / 2];
+        String[] tempURLs = new String[tempTextArray.length - 1];
         int i = 0;
 
         // We loop over the length of tempURLs and store the href link(s)
         // into tempURLs.
-        // Loop invariant: for i, tempURLs[i] will contain half of the elements
-        // tempTextArray[i], or 0
+        // Loop invariant: for i, tempURLs[i] will the ith + 1 href elements of
+        // tempTextArray[i]
         while (i < tempURLs.length) {
 
-            // We take every second element of tempTextArray,
-            // take the substring of that element starting at index 2 (3rd element),
-            // and split that element where the quotation (") exists.
+            // We start from the second element of tempTextArray and
+            // take the substring of that element starting at index 2 (3rd element) ,
+            // split that element where the quotation (") exists.
             // We can take the first element as we truncated the first quotation
             // with substring(2). We then assign this to the ith element of
             // tempURLs.
-            tempURLs[i] = tempTextArray[2 * i + 1].substring(2).split("\"")[0];
+            tempURLs[i] = tempTextArray[i + 1].substring(2).split("\"")[0];
             i++;
         }
 
@@ -64,7 +69,7 @@ public class WebCrawler {
      */
     public static ArrayList<String> collectUrls(String urlString) {
         String readString = null;
-        ArrayList<String> tempURLs = new ArrayList<String>();
+        ArrayList<String> tempURLs = new ArrayList<>();
 
         // We use try/catch to account for input/output exceptions
         try {

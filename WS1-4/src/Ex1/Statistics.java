@@ -55,8 +55,4 @@ public class Statistics {
 
         return Math.sqrt(tempSquaredDifference / list.size());
     }
-//
-//    public static double getMeasure(){
-//        return
-//    }
 }

@@ -1,0 +1,19 @@
+[0] Config.pm:343> INFO - This is Biber 2.5
+[0] Config.pm:346> INFO - Logfile is 'essay_1.blg'
+[49] biber-darwin:290> INFO - === Wed Nov 16, 2016, 23:32:02
+[70] Biber.pm:351> INFO - Reading 'essay_1.bcf'
+[164] Biber.pm:773> INFO - Using all citekeys in bib section 0
+[179] Biber.pm:3493> INFO - Processing section 0
+[203] Biber.pm:3657> INFO - Looking for bibtex format file 'export.bib' for section 0
+[206] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[208] bibtex.pm:1048> INFO - Found BibTeX data source 'export.bib'
+[214] Utils.pm:149> WARN - The field 'author' in entry 'cs164:2' cannot be null, deleting it
+[214] Utils.pm:149> WARN - The field 'month' in entry 'cs164:2' cannot be null, deleting it
+[214] Utils.pm:149> WARN - The field 'year' in entry 'cs164:2' cannot be null, deleting it
+[222] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[223] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[223] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'en-US'
+[223] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
+[225] bbl.pm:526> INFO - Writing 'essay_1.bbl' with encoding 'ascii'
+[226] bbl.pm:619> INFO - Output to essay_1.bbl
+[226] Biber.pm:108> INFO - WARNINGS: 3
