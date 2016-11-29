@@ -1,0 +1,61 @@
+(setq week 1)
+(load-file "../aux.el")
+
+(setq topics '(
+"Some slides"
+("s1.pdf" "some slides")
+("s1-print.pdf" "slides - 8 slides on a page")
+"Lecture capture"
+("lectureCapture01.ogv" "lecture capture")
+"Comments"
+("HelloWorld.java" "HelloWorld example in Java")
+("Comment1.java" " write comments")
+("Comment2.jav" " no nesting of /*   */")
+
+"Simple strings"
+("String1.java" "Strings, print and println")
+("String2.java" "\" in strings.")
+("String3.java" "Concatenation of strings")
+("String4.java" "Some unicode characters as strings")
+("String5.java" "Careful: phishing")
+
+"Simple computations as on a pocket calculator"
+("Computation1.java" "addition, multiplication, subtraction, division")
+("Computation2.java" "sqrt")
+("Computation3.java" "pi, e, sin, cos, tan, atan, asin, acos")
+("Computation4.java" "pow, exp, log")
+("Computation5.java" "random")
+("Computation6.java" "round, ceil, floor")
+("Computation7.java" "NaN, 1/0")
+
+"Types, TypeCasting"
+("Types.java" "The 8 base types in Java")
+("TypeCasting.java" "(byte) 5")
+
+"Variables and assignment"
+("Var1.java" "x = 3;")
+("Var2.java" "x = 3; y = 4; x = x+y;")
+("Var3.java" "x = 3; x = x+8;")
+("Var4.java" "Meaning of assignment")
+("Var5.java" "swap the values of two variables")
+("Var6.java" "unit conversion")
+("Var7.java" "usage of variables")
+("Var8.java" "meaningful names")
+("Var9.java" "meaningful names")
+("Var10.java" "advanced example")
+
+"Command line input: Strings, Arguments, Conversion"
+("Input1.java" "Strings, argument")
+("Input2.java" "Strings, 2 arguments")
+("Length.java" "Strings, length")
+("Square.java" "conversion, Simple computation")
+
+"static methods"
+("Conversion.java" "Fahrenheit - Celsius conversion")
+;("Rectangle.java" "computation of circumference and area of a rectangle")
+))
+
+(write-web-page "README")
+;(write-all-java)
+;(cp topics)
+

@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\scrollmode
+\thispagestyle{empty}
+%\usepackage{latexsym}
+\usepackage{fancyhdr}
+\def\myfooter{\vfill{\footnotesize\noindent\copyright\ 2016, Manfred Kerber, School of Computer Science, University of Birmingham}}
+%\usepackage{colordvi}
+\usepackage{url}
+%\usepackage{bbm}
+%\usepackage{verbatim}
+%%%%%%%%%
+%\usepackage{listings}
+%\lstloadlanguages{Java,csh}
+%\lstset{basicstyle=\ttfamily\normalsize,columns=fixed,breaklines=true,language=Java,showstringspaces=false}
+%\lstMakeShortInline|
+
+%%%%%%%%%%
+
+\newif\ifslide\slidetrue
+\newif\ifnotes\notesfalse
+\newif\ifColour\Colourfalse
+\newif\ifpdf\pdffalse
+\usepackage{code}
+\usepackage{epsfig}
+\usepackage{a4wide}
+%\usepackage{pstricks,pst-node}
+%\addtolength{\textheight}{2.5cm}%{4ex}
+\newcommand{\myhead}[1]{\begin{center}\large\bf #1\end{center}}
+%\input{ex-macros} 
+%\includeonly{linclass}
+\begin{document}
+\myhead{Lab lecture exercises -- 30 September 2016}
+\begin{enumerate}
+ \item
+   \begin{enumerate}
+     \item Log-in.
+     \item Open a Terminal.
+     \item Create a new directory called \texttt{java} by typing in the terminal \texttt{mkdir java} (``make directory''). Then press the \texttt{return} key.
+     \item Make the \texttt{java} directory to your working directory by \texttt{cd java} (``change directory'').
+     \item Edit a file \texttt{HelloWorld.java} by invoking an editor
+       of your choice, e.g., by \texttt{gedit HelloWorld.java
+         \&}. Note that the ``\&'' at the end means that the shell can
+       be used for other input. We say that the \texttt{gedit} process
+       is moved to the background and we can run several processes in
+       parallel in a single terminal.
+     \item Insert text into the editor, e.g., by copying the file from the module web page at
+       \url{http://www.cs.bham.ac.uk/internal/courses/java/msc/}.
+     \item Save the file (in gedit by pressing the ``Save'' button).
+     \item Compile the file in the terminal by typing \texttt{javac HelloWorld.java}.
+     \item Run the program by typing \texttt{java HelloWorld}.
+     \item Extract the documentation by typicing \texttt{javadoc HelloWorld.java}.
+    \end{enumerate}
+
+  \item Write a class \texttt{Rectangle.java} which contains a method
+    to compute the circumference,\\ \texttt{public
+      static double circumference(double a, double b)} of
+    rectangles with sideline lengths \texttt{a} and \texttt{b}. Test
+    your program with \texttt{a = 4} and \texttt{b = 5}. Print the
+    result in a suitable form.
+
+    \item Start work on Exercise 1 of Worksheet 1.
+    \item Start work on Exercise 2 of Worksheet 1.
+\end{enumerate}
+
+\myfooter
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

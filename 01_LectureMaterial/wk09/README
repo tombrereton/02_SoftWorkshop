@@ -1,0 +1,29 @@
+(setq week 9)
+(load-file "../aux.el")
+
+(setq topics '(
+("slides/s9.pdf" "some slides")
+("slides/s9-print.pdf" "slides - 8 slides on a page")
+
+"JFrame"
+("Frame.java" "An empty JFrame")
+
+"Example for Graphics as extension of JPanel"
+("RectanglesAndOvals.java" "Some simple examples how to put rectangles and ovals on a panel")
+("Triangle.java" "A triangle as a special case of a polygons")
+("RectangleAndPolyline.java" "Some more rectangles and some polylines and polygons")
+("Ornaments.java" "Polygones form shapes")
+("Colour.java" "How to deal with rgb colours")
+("ChessBoard.java" "An empty chess board, generated from 3D squares.")
+("Grid.java" "Translating two-dimensional arrays into coloured dots.")
+("Picture.java" "How to load an image into some graphics")
+("images/index.html" "Images can be found in the images folder")
+
+"Drawing a function graph"
+("FunctionGraph.java" "Code to display the graph of a function")
+
+"An interactive way to display a chess board"
+("Chess.java" "Interactive playing of chess from the command line")
+))
+
+(write-web-page "README")
