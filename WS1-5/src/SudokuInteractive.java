@@ -60,6 +60,7 @@ public class SudokuInteractive extends Sudoku {
 
         // Loop until userInput equals "exit"
         // TODO: exit when sudoku is finished!
+        // TODO: printout when sudoku is finished!
         while (!userInput.equals("exit")) {
 
             // We take user input
@@ -99,6 +100,11 @@ public class SudokuInteractive extends Sudoku {
                 System.out.println("Enter input in the format:\n   rowcolumn:number\n   For example, d4:5");
             }
 
+            if (isFilled(sudokuInteractive.getArray())) {
+                System.out.println("\nSudoku complete! Well done.");
+                break;
+            }
+
         }
     }
 
@@ -109,6 +115,7 @@ public class SudokuInteractive extends Sudoku {
      * @param a 2d array
      * @return a string in a soduko format
      */
+    // TODO: comment stringBuilder method
     @Override
     public String stringBuilder(int[][] a) {
         int numberOfRows = a.length;
@@ -163,9 +170,10 @@ public class SudokuInteractive extends Sudoku {
     /**
      * We use a method to parse user input into the Sudoku array. We only
      * allow user input if it is NOT part of the original array.
+     *
      * @param userLocation A row and column location of the Sudoku number to be entered.
-     * @param userNumber A Sudoku number to be entered
-     * @param sudoku We get the array from this Sudoku object that we change with the userNumber
+     * @param userNumber   A Sudoku number to be entered
+     * @param sudoku       We get the array from this Sudoku object that we change with the userNumber
      * @return A 2d array of type int which stores the new userNumber
      */
     public static int[][] userInputToSudoku(String userLocation, int userNumber, Sudoku sudoku) {
@@ -188,6 +196,7 @@ public class SudokuInteractive extends Sudoku {
 
     /**
      * We create a main method to run and interact with the Sudoku object.
+     *
      * @param args No arugments are needed
      */
     public static void main(String[] args) {

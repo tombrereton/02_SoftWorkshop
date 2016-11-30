@@ -29,6 +29,7 @@ public class SudokuRead {
      * between 1 and 9, or a space
      * @throws IOException When it cannot find the file specified
      */
+    // TODO: make this a static method?
     public Sudoku readSudoku(String fileName) throws IllegalArgumentException, IOException {
 
         // Initialise 2d array of zeros
@@ -59,15 +60,6 @@ public class SudokuRead {
             // assign each character to an element in lineArray
             String[] lineArray = line.split(""); //new String[lineLength];
 
-            // loop over each character in "line"
-            // and assign it to an element in lineArray
-            // TODO; change to split with ""
-//            for (int i = 0; i < Math.min(9, lineLength); i++) {
-//
-//                // split line into 9 elements
-//                lineArray[i] = line.substring(i, i + 1);
-//            }
-
             // Loop over lineArray and copy it into the 2d
             // array "a"
             for (int i = 0; i < Math.min(9, lineLength); i++) {
@@ -78,9 +70,6 @@ public class SudokuRead {
                 }
             }
             row++;
-
-
-
         }
         reader.close();
 

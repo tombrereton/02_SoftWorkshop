@@ -22,7 +22,8 @@ public class SudokuCheck {
      * @param sudoku a Sudoku object which will be checked
      *               for correctness
      * @return a 2d boolean array representing the correctness
-     * of each row, column, and 3x3 grid
+     * of each row, column, and 3x3 grid. False indicates it
+     * is incorrect or not full.
      */
     public static boolean[][] check(Sudoku sudoku) {
         boolean[][] b = new boolean[3][9];
@@ -40,71 +41,65 @@ public class SudokuCheck {
         // TODO: 2. Change to 1 outer loop so more efficient? Or leave as 3 outer loops for readability?
 
 
+        // CHECK ROWS
+
         // We start from the 'top' and  loop over the rows
-        // to check if the row sums to 45
+        // and store each row in a temporary array
         for (int i = 0; i < numberOfRows; i++) {
-            sumRow = 0;
+            int[] tempArray = new int[9];
 
-            // We loop over the columns for each row and sum the numbers
-            // in the row.
+            // We loop over the ith row and store it in tempArray
             for (int j = 0; j < numberOfColumns; j++) {
-                sumRow += a[i][j];
+                tempArray[j] = a[i][j];
             }
 
-            // checkNumberOfNumbers(sumRow[i]);
+            // If the ith row is full and contains 1 to 9 once,
+            // we assign b[0][i] as true, false if not
+            b[0][i] = checkNumberOfNumbers(tempArray);
 
-            // If the sum of the row is equal to 45 we assign
-            // the respective element in the boolean array, b,
-            // to true, false if not
-            if (sumRow == 45) {
-                b[0][i] = true;
-            } else {
-                b[0][i] = false;
-            }
         }
+
+        // CHECK COLUMNS
 
         // We start from the 'left' and  loop over the columns
-        // to check if the column sums to 45
+        // and store each column in a temporary array
         for (int j = 0; j < numberOfColumns; j++) {
-            sumCol = 0;
+            int[] tempArray = new int[9];
 
-            // We loop over the rows for each column and sum the numbers
-            // in the column.
+
+            // We loop over the jth column and store it in tempArray
             for (int i = 0; i < numberOfRows; i++) {
-                sumCol += a[i][j];
+                tempArray[i] = a[i][j];
             }
 
-            // If the sum of the row is equal to 45 we assign
-            // the respective element in the boolean array, b,
-            // to true, false if not
-            if (sumCol == 45) {
-                b[1][j] = true;
-            } else {
-                b[1][j] = false;
-            }
+            // If the jth column is full and contains 1 to 9 once,
+            // we assign b[1][j] as true, false if not
+            b[1][j] = checkNumberOfNumbers(tempArray);
+
         }
+
+        // CHECK 3x3 GRIDS
 
         // check each 3x3 grid if it contains 1 though 9 once, or not
         // loop over the 9 grids
         for (int i = 0; i < 9; i++) {
-            int sumGrid = 0;
+            int[] tempArray = new int[9];
 
-            // loop over 3 rows
+            // loop over 3 rows of the ith grid
             for (int j = 0; j < 3; j++) {
 
-                // loop over 3 columns
+                // loop over 3 columns of the ith grid
                 for (int k = 0; k < 3; k++) {
-                    sumGrid += a[(i / 3 * 3 + j)][(i * 3 % 9) + k];
+
+                    // We each element of the ith 3x3 grid in tempArray
+                    tempArray[j * 3 + k] = a[(i / 3 * 3 + j)][(i * 3 % 9) + k];
                 }
             }
 
-            if (sumGrid == 45) {
-                b[2][i] = true;
-            } else {
-                b[2][i] = false;
-            }
+            // If the ith 3x3 grid is full and contains 1 to 9 once,
+            // we assign b[2][j] as true, false if not
+            b[2][i] = checkNumberOfNumbers(tempArray);
         }
-
 
 
         return b;
@@ -113,14 +108,22 @@ public class SudokuCheck {
     public static boolean checkNumberOfNumbers(int[] array1) {
         Arrays.sort(array1);
 
-        int[] array2 = {1,2,3,4,5,6,7,8,9};
+        int[] array2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-        Arrays.equals(array1, array2);
+        return Arrays.equals(array1, array2);
 
-        String arrayJoin = Arrays.toString(array1);
+    }
 
-        System.out.println(arrayJoin);
+    public static boolean isCompletedArray(Sudoku sudoku) {
+        boolean[][] temp = check(sudoku);
 
+        for (boolean[] row : temp){
+            for(boolean element : row){
+                if(!element){
+                    return false;
+                }
+            }
+        }
         return true;
     }
 }

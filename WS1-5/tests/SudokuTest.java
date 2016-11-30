@@ -212,18 +212,18 @@ public class SudokuTest {
 
     }
 
-    /**
-     * Testing toString for an empty array
-     *
-     * @throws Exception
-     */
-    @Test
-    public void test7() throws Exception {
-        String expected = "";
-
-        assertEquals("Should throw exception ", expected, s3.toString());
-
-    }
+//    /**
+//     * Testing toString for an empty array
+//     *
+//     * @throws Exception
+//     */
+//    @Test
+//    public void test7() throws Exception {
+//        String expected = "";
+//
+//        assertEquals("Should throw exception ", expected, s3.toString());
+//
+//    }
 
     /**
      * Testing for reading in text file
@@ -359,33 +359,200 @@ public class SudokuTest {
 
     }
 
-//    /**
-//     * Testing SudokuInteractive.play and the reset function
-//     * We read in sudoku.txt, dislpay it to screen,
-//     * record user input, and display user input to screen
-//     *
-//     * @throws Exception
-//     */
-//    @Test
-//    public void test12() throws Exception {
-//                String expected =
-//                "++===+===+===++===+===+===++===+===+===++\n";
-//
-//        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku1.txt";
-//
-//
-////        SudokuRead sudokuRead1 = new SudokuRead();
-////        Sudoku sudoku1 = sr1.readSudoku(textDirectory);
-////
-////        SudokuInteractive si1;
-//
-//        SudokuInteractive.play(textDirectory);
-//        System.out.println("a1:1");
-//        System.out.println("reset");
-//
-//        assertEquals("Should return original sudoku board", expected, SudokuInteractive.);
-//
-//    }
+    /**
+     * Testing the SudokoInteractive toString method.
+     * The method should have grid coordinates and asterisks
+     * next to orignal numbers read in.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test13() throws Exception {
+        String expected =
+
+                "      1   2   3    4   5   6    7   8   9\n" +
+                "   ++===+===+===++===+===+===++===+===+===++\n" +
+                "a  ||   |*2*|*3*||*4*|*5*|*6*||*7*|   |*9*||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "b  ||*4*|*5*|*6*||*7*|*8*|*9*||*1*|*2*|   ||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "c  ||*7*|*8*|*9*||*1*|*2*|*3*||*4*|*5*|   ||\n" +
+                "   ++===+===+===++===+===+===++===+===+===++\n" +
+                "d  ||*2*|*3*|*4*||   |*6*|*7*||*8*|*9*|*1*||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "e  ||*5*|*6*|*7*||*8*|*9*|*1*||   |*3*|*4*||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "f  ||*8*|*9*|*1*||*2*|   |*4*||*5*|*6*|*7*||\n" +
+                "   ++===+===+===++===+===+===++===+===+===++\n" +
+                "g  ||*3*|*4*|   ||*6*|*7*|*8*||*9*|*1*|*2*||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "h  ||*6*|   |*8*||*9*|*1*|*2*||*3*|*4*|*5*||\n" +
+                "   ++---+---+---++---+---+---++---+---+---++\n" +
+                "i  ||*1*|*2*|*3*||*4*|*5*|*6*||*7*|*8*|   ||\n" +
+                "   ++===+===+===++===+===+===++===+===+===++";
 
 
+        // retutn those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku1.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuInteractive si1 = new SudokuInteractive(sudoku.getArray());
+
+        assertEquals("String should match expected ", expected, si1.toString());
+
+    }
+
+    /**
+     * Testing SudokuSolve, should solve a Sudoku puzzle for ex 1
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test14() throws Exception {
+        String expected =
+                        "++===+===+===++===+===+===++===+===+===++\n" +
+                        "|| 5 | 7 | 1 || 9 | 3 | 2 || 6 | 8 | 4 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 6 | 4 | 2 || 8 | 5 | 1 || 7 | 9 | 3 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 8 | 3 | 9 || 6 | 4 | 7 || 5 | 1 | 2 ||\n" +
+                        "++===+===+===++===+===+===++===+===+===++\n" +
+                        "|| 4 | 9 | 7 || 1 | 6 | 5 || 2 | 3 | 8 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 2 | 1 | 8 || 7 | 9 | 3 || 4 | 6 | 5 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 3 | 6 | 5 || 4 | 2 | 8 || 1 | 7 | 9 ||\n" +
+                        "++===+===+===++===+===+===++===+===+===++\n" +
+                        "|| 1 | 5 | 4 || 3 | 7 | 9 || 8 | 2 | 6 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 9 | 8 | 6 || 2 | 1 | 4 || 3 | 5 | 7 ||\n" +
+                        "++---+---+---++---+---+---++---+---+---++\n" +
+                        "|| 7 | 2 | 3 || 5 | 8 | 6 || 9 | 4 | 1 ||\n" +
+                        "++===+===+===++===+===+===++===+===+===++";
+
+
+        // retutn those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex1.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        assertEquals("Array should match solved array ", expected, ss1.toString());
+
+    }
+
+    /**
+     * Testing SudokuSolve, should solve a Sudoku puzzle for ex 2
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test15() throws Exception {
+
+        // return those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex2.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        // Polymorphism!!!
+        assertTrue(SudokuCheck.isCompletedArray(ss1));
+
+    }
+
+    /**
+     * Testing SudokuSolve, should solve a Sudoku puzzle for ex 3
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test16() throws Exception {
+
+        // return those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex3.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        // Polymorphism!!!
+        assertTrue(SudokuCheck.isCompletedArray(ss1));
+
+    }
+
+    /**
+     * Testing SudokuSolve, should solve a Sudoku puzzle for ex 4
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test17() throws Exception {
+
+        // return those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex4.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        // Polymorphism!!!
+        assertTrue(SudokuCheck.isCompletedArray(ss1));
+
+    }
+
+    /**
+     * Testing SudokuSolve, should solve a Sudoku puzzle for ex 5
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test18() throws Exception {
+
+        // return those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex5.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        // Polymorphism!!!
+        assertTrue(SudokuCheck.isCompletedArray(ss1));
+
+    }
+
+    /**
+     * Testing SudokuSolve, should fail to solve a Sudoku puzzle for ex 6
+     *
+     *
+     * @throws Exception
+     */
+    @Test
+    public void test19() throws Exception {
+
+        // return those bits
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-ex6.txt";
+        SudokuRead sr1 = new SudokuRead();
+        Sudoku sudoku = sr1.readSudoku(textDirectory);
+
+        SudokuSolve ss1 = new SudokuSolve(sudoku.getArray());
+
+        ss1.solve();
+
+        // Polymorphism!!!
+        assertFalse(SudokuCheck.isCompletedArray(ss1));
+
+    }
 }
