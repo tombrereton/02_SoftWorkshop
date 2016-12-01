@@ -1,0 +1,53 @@
+(setq week 10)
+(load-file "../aux.el")
+
+(setq topics '(
+"Some slides"
+("slides/s10.pdf" "some slides")
+("slides/s10-print.pdf" "slides - 8 slides on a page")
+
+"First Control"
+("FirstWindow/FirstWindow.java" "A JFrame with a JButton")
+("FirstWindow/EndingListener.java" "A listener for the JButton")
+("FirstWindow/FirstWindowMain.java" "A main class")
+
+"GridLayout, extension from one to three buttons, classes separated cleanly"
+("ThreeButtons/Counter.java" "The counter class as the model")
+("ThreeButtons/ThreeButtonsSep.java" "Counting with three buttons, event handlers in separate files")
+("ThreeButtons/ThreeButtonsSepMain.java" "Corresponding main method")
+("ThreeButtons/UpCounterSep.java" "ActionListener for up clicks")
+("ThreeButtons/DownCounterSep.java" "ActionListener for down clicks")
+("ThreeButtons/EndingListener.java"   "ActionListener for ending the application")
+("ThreeButtons/ResultPanelSep.java"   "Panel for displaying the value of the variable")
+
+"GridLayout, extension from one to three buttons with inner class"
+("ThreeButtons/ThreeButtons.java" "Counting with three buttons, event handlers in inner classes")
+("ThreeButtons/ThreeButtonsMain.java" "Corresponding main method")
+("ThreeButtons/EndingListener.java"   "ActionListener for ending the application")
+
+"Example of a slider"
+("Slider/CirclePanel.java"  "A circle on a panel")
+("Slider/SliderFrame.java"  "A slider to change the size of the circle")
+("Slider/SliderDemo.java"   "Corresponding main method")
+
+"Extension with two sliders"
+("TwoSlider/OvalPanel.java"  "An ellipse on a panel")
+("TwoSlider/TwoSliderFrame.java"  "Two sliders to change the size of the two dimensions of the ellipse")
+("TwoSlider/TwoSliderFrameFunction.java"  "Same as above, but one inner class replaced by function")
+("TwoSlider/TwoSliderDemo.java"   "Corresponding main method")
+
+"Temperature Conversion to exemplify the Model-View-Controller approach"
+("Temperature/Temperature.java" "Temperature objects with Celsius and Fahrenheit getters/setters")
+("Temperature/TemperatureComponent.java" "JPanel with model, Celsius, Fahrenheit views, and slider control")
+("Temperature/TemperatureModel.java" "Model of Temperature class with setChanged and notifyObservers")
+("Temperature/CelsiusView.java" "Celsius view with update method")
+("Temperature/FahrenheitView.java" "Fahrenheit view with update method")
+("Temperature/SliderListener.java" "Slider with stateChanged method to update temperature")
+("Temperature/TemperatureGUI.java" "Main method to start the GUI")
+
+))
+
+
+(write-web-page "README")
+
+;(cp topics)
