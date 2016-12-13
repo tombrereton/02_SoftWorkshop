@@ -100,7 +100,7 @@ public class SudokuTest {
     @Test
     public void Sudoku_toString_1() throws Exception {
         String expected =
-                "++===+===+===++===+===+===++===+===+===++\n" +
+                        "++===+===+===++===+===+===++===+===+===++\n" +
                         "|| 1 | 2 | 3 || 4 | 5 | 6 || 7 | 8 | 9 ||\n" +
                         "++---+---+---++---+---+---++---+---+---++\n" +
                         "|| 4 | 5 | 6 || 7 | 8 | 9 || 1 | 2 | 3 ||\n" +
@@ -377,6 +377,9 @@ public class SudokuTest {
 
     }
 
+
+
+
     /**
      * Testing SodokuCheck.check for a incorrect array
      *
@@ -421,7 +424,7 @@ public class SudokuTest {
     @Test
     public void SudokuSolve_solve_1_minus2values() throws Exception {
         String expected =
-                "++===+===+===++===+===+===++===+===+===++\n" +
+                        "++===+===+===++===+===+===++===+===+===++\n" +
                         "|| 1 | 2 | 3 || 4 | 5 | 6 || 7 | 8 | 9 ||\n" +
                         "++---+---+---++---+---+---++---+---+---++\n" +
                         "|| 4 | 5 | 6 || 7 | 8 | 9 || 1 | 2 | 3 ||\n" +
@@ -601,7 +604,6 @@ public class SudokuTest {
 
         ss1.solve();
 
-        // Polymorphism!!!
         assertTrue(SudokuCheck.isCompletedArray(ss1));
 
     }
@@ -623,7 +625,6 @@ public class SudokuTest {
 
         ss1.solve();
 
-        // Polymorphism!!!
         assertTrue(SudokuCheck.isCompletedArray(ss1));
 
     }
@@ -645,7 +646,6 @@ public class SudokuTest {
 
         ss1.superSolve();
 
-        // Polymorphism!!!
         assertTrue(SudokuCheck.isCompletedArray(ss1));
 
     }
@@ -656,7 +656,7 @@ public class SudokuTest {
      * @throws Exception
      */
     @Test
-    public void SudokuSolve_solve_6_suduko_difficult() throws Exception {
+    public void SudokuSolve_solve_7_suduko_difficult() throws Exception {
 
         // return those bits
         String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-difficult.txt";
@@ -667,7 +667,6 @@ public class SudokuTest {
 
         ss1.superSolve();
 
-        // Polymorphism!!!
         assertTrue(SudokuCheck.isCompletedArray(ss1));
 
     }

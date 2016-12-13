@@ -76,7 +76,7 @@ public class SudokuInteractive extends Sudoku {
                 System.out.println("Exiting program...");
                 break;
 
-                // We reset the program if user input = "reset"
+            // We reset the program if user input = "reset"
             } else if (userInput.equals("reset")) {
 
                 System.out.println("Resetting program...");
@@ -85,7 +85,7 @@ public class SudokuInteractive extends Sudoku {
                 sudokuInteractive.setArray(sudokuRead.readSudoku(file).getArray());
                 System.out.println(sudokuInteractive);
 
-                // We change the array if it matches "a1:1"
+            // We change the array if it matches "a1:1"
             } else if (match) {
 
                 // We parse user input to userlocation and userNumber
@@ -216,7 +216,7 @@ public class SudokuInteractive extends Sudoku {
      * @param args No arugments are needed
      */
     public static void main(String[] args) {
-        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/src/sudoku-one-missing.txt";
+        String textDirectory = "/Users/TomBrereton/Documents/BhamCS/02_SoftWorkshop/WS1-5/WS1-5/sudoku-ex1.txt";
 
 
         try {

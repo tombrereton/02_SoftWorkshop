@@ -29,8 +29,7 @@ public class SudokuRead {
      * between 1 and 9, or a space
      * @throws IOException When it cannot find the file specified
      */
-    // TODO: make this a static method?
-    public Sudoku readSudoku(String fileName) throws IllegalArgumentException, IOException, NumberFormatException {
+    public Sudoku readSudoku(String fileName) throws IllegalArgumentException, IOException {
 
         // Initialise 2d array of zeros
         int[][] a = new int[9][9];
@@ -72,6 +71,7 @@ public class SudokuRead {
             row++;
         }
         reader.close();
+        fileReader.close();
 
         // instantiate Sudoku object with 2d array
         Sudoku s = new Sudoku(a);

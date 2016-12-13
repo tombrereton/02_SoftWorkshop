@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 /**
  * This is a class called SodokuSolve.
@@ -33,11 +31,26 @@ public class SudokuSolve extends Sudoku {
 
     public void superSolve() {
 
-        solveTrial();
+        boolean isSolved = false;
+        int count=0;
 
-        solve();
+        while (!isSolved) {
+            solveTrial();
 
-        solveTrial();
+            solve();
+
+            isSolved = SudokuCheck.isCompletedArray(this);
+
+
+            // if isFilled doesn't change
+                // break loop
+
+            if (count > 10) {
+               break;
+            }
+
+            count++;
+        }
     }
 
     /**
@@ -224,7 +237,7 @@ public class SudokuSolve extends Sudoku {
         ArrayList<Integer> compareArrayList = new ArrayList<Integer>();
         int numberOfColumns = a[0].length;
 
-        for (int i = 1; i <= 9; i++) {
+        for (int i = 1; i <= a.length; i++) {
             compareArrayList.add(i);
         }
 
@@ -402,7 +415,6 @@ public class SudokuSolve extends Sudoku {
 
         int i = 0;
         while (i < 9) {
-//            for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
 
                 if (arrayToSolve[i][j] == 0) {
@@ -414,7 +426,8 @@ public class SudokuSolve extends Sudoku {
 
                     if (commonMissingValuesList.size() == 1) {
                         arrayToSolve[i][j] = commonMissingValuesList.get(0);
-                        i = 0;
+                        i = -1;
+                        break;
                     }
                 }
             }
@@ -422,154 +435,6 @@ public class SudokuSolve extends Sudoku {
         }
 
 
-    }
-
-
-    public void solveInitial() {
-
-        int[][] arrayToSolve = this.getArray();
-        boolean[][] checkBoolean = SudokuCheck.check(this);
-
-        // OUTLINE
-
-        // Check which rows are solved
-        // Exclude solved rows
-        // Solve if one empty cell in row
-
-        // Check which columns are solved
-        // Exclude solved columns
-        // Solve if one empty cell in column
-
-        // Check which grids are solved
-        // Exclude solved grids
-        // Solve if one empty cell in grid
-
-        int unsolvedCount;
-        int sum;
-        int missingNumberRow = 0;
-        int missingNumberColumn = 0;
-
-        // Loop over the rows, from top to bottom
-        for (int i = 0; i < 9; i++) {
-
-            // TODO: 1 abstract this into a method which is the same as column
-            // ROW SOLVER
-            // We check if a row is unsolved, and see if we can solve it
-            if (!checkBoolean[0][i]) {
-                unsolvedCount = 0;
-                sum = 0;
-
-                // We loop over the columns for row i and fill
-                // in the missing value, if only 1 number is missing
-                for (int j = 0; j < 9; j++) {
-
-                    // We count exiting numbers to find missing number
-                    sum += arrayToSolve[i][j];
-
-                    // We check if number is 0 (unfilled)
-                    if (arrayToSolve[i][j] == 0) {
-
-                        // We count the missing values and record the
-                        // location of the last missing number
-                        unsolvedCount++;
-                        missingNumberColumn = j;
-                    }
-                }
-
-                // If only 1 number is missing, we fill the row with the missing number
-                if (unsolvedCount == 1) {
-
-                    // find missing number from existingNumbers, 45 - sum of numbers
-                    int missingNumber = 45 - sum;
-
-                    // enter missing number into array
-                    arrayToSolve[i][missingNumberColumn] = missingNumber;
-
-                    // loop through every row, column, and grid again
-                    i = 0;
-                }
-            }
-
-            // COLUMN SOLVER
-            // We check if the ith column is unsolved, and see if we can solve it
-            if (!checkBoolean[1][i]) {
-                unsolvedCount = 0;
-                sum = 0;
-
-                // We loop over the columns for row i and fill
-                // in the missing value, if only 1 number is missing
-                for (int j = 0; j < 9; j++) {
-
-                    // We count exiting numbers to find missing number
-                    sum += arrayToSolve[j][i];
-
-                    // We check if number is 0 (unfilled)
-                    if (arrayToSolve[j][i] == 0) {
-
-                        // We count the missing values and record the
-                        // location of the last missing number
-                        unsolvedCount++;
-                        missingNumberRow = i;
-                    }
-                }
-
-                // If only 1 number is missing, we fill the row with the missing number
-                if (unsolvedCount == 1) {
-
-                    // find missing number from existingNumbers, 45 - sum of numbers
-                    int missingNumber = 45 - sum;
-
-                    // enter missing number into array
-                    arrayToSolve[missingNumberRow][i] = missingNumber;
-
-                    // loop through every row, column, and grid again
-                    i = 0;
-                }
-            }
-
-            // GRID SOLVER
-            // TODO: abstract this into its own method
-
-            // We check if the ith 3x3 grid is unsolved, and see if we can solve it
-            if (!checkBoolean[2][i]) {
-                unsolvedCount = 0;
-                sum = 0;
-
-                // We loop over the rows for grid i and fill
-                // in the missing value, if only 1 number is missing
-                for (int j = 0; j < 3; j++) {
-
-                    // loop over the columns for grid i
-                    for (int k = 0; k < 3; k++) {
-                        // We count exiting numbers to find missing number
-                        sum += arrayToSolve[(i / 3 * 3 + j)][(i * 3 % 9) + k];
-
-                        // We check if number is 0 (unfilled)
-                        if (arrayToSolve[(i / 3 * 3 + j)][(i * 3 % 9) + k] == 0) {
-
-                            // We count the missing values and record the
-                            // location of the last missing number
-                            unsolvedCount++;
-                            missingNumberRow = (i / 3 * 3 + j);
-                            missingNumberColumn = (i * 3 % 9) + k;
-                        }
-                    }
-                }
-
-                // If only 1 number is missing, we fill the row with the missing number
-                if (unsolvedCount == 1) {
-
-                    // find missing number from existingNumbers, 45 - sum of numbers
-                    int missingNumber = 45 - sum;
-
-                    // enter missing number into array
-                    arrayToSolve[missingNumberRow][missingNumberColumn] = missingNumber;
-
-                    // loop through every row, column, and grid again
-                    i = 0;
-                }
-            }
-        }
     }
 
 }

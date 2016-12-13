@@ -101,12 +101,16 @@ public class SudokuCheck {
         return b;
     }
 
+
+
+
     public static boolean checkNumberOfNumbers(int[] array1) {
         for (int i = 0; i < 9; i++){
             if ( array1[i] > 9) {
                 array1[i] = array1[i] - 10;
             }
         }
+
 
         Arrays.sort(array1);
 
